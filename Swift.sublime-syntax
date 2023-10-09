@@ -683,6 +683,9 @@ contexts:
         1: punctuation.accessor.dot.swift
         2: storage.type.metatype.type.swift
         3: storage.type.metatype.protocol.swift
+    - match: \b([A-Z]+[{{identifier_character}}]+)\b(?!`)
+      captures:
+        1: support.class.swift
 
     # any-type
     - match: \bAny\b(?!`)
@@ -2152,7 +2155,7 @@ contexts:
     - match: \b(NS[A-Z][{{identifier_character}}]+)\b(?!`)
       scope: support.class.cocoa.swift
     # Prefixed type name (e.g. 'UIA'pplication)
-    - match: \b([A-Z]{3}[{{identifier_character}}]+)\b(?!`)
+    - match: \b([A-Z]+[{{identifier_character}}]+)\b(?!`)
       scope: support.class.swift
     # Konstant ('kAXT'rustedCheckOptionPrompt or some have prefix with 4 letters)
     - match: \b(k[A-Z]{3,4}[{{identifier_character}}]+)\b(?!`)
