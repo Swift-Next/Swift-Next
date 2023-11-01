@@ -132,7 +132,7 @@ typealias Foo<T> = Bar<T, Int> // comment
 
 // MARK: Actors
 
-actor BankAccount {
+actor BankAccount: Encodable, CustomUserProtocol, YetAnotherUserProtocol {
   let accountNumber: Int
   var balance: Double
   init(accountNumber: Int, initialDeposit: Double) {
@@ -172,7 +172,7 @@ func foo() throws -> (Int, String) {}
 func foo() rethrows {}
 func +++(arg: Int) {}
 func `func`(arg: Int){}
-func generic<T>(arg: Int){}
+func generic<T>(arg: TimeInterval){}
 func ++<T>(arg: Int){}
 func < <T>(arg: Int){}
 func  <<T>(arg: Int){}
