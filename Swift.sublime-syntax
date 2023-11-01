@@ -683,9 +683,6 @@ contexts:
         1: punctuation.accessor.dot.swift
         2: storage.type.metatype.type.swift
         3: storage.type.metatype.protocol.swift
-    - match: \b([A-Z]+[{{identifier_character}}]+)\b(?!`)
-      captures:
-        1: support.class.swift
 
     # any-type
     - match: \bAny\b(?!`)
