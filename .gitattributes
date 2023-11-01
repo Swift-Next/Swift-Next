@@ -1,0 +1,4 @@
+/.github/* export-ignore
+/utils/* export-ignore
+/tests/* export-ignore
+/Swift\ Next.sublime-project export-ignore
