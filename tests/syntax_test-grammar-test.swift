@@ -1,18 +1,41 @@
-#!/usr/bin/swift // SYNTAX TEST "Swift.sublime-syntax"
+// SYNTAX TEST "Swift.sublime-syntax"
 
 ///
 /// - Note: This file is taken from https://github.com/textmate/swift.tmbundle
 ///         and modified by https://github.com/aerobounce
+///         tests implemented by https://github.com/yaroslavyaroslav
 ///
 
+/******************************************************************************
+ * Comment Tests
+ *****************************************************************************/
+
 // a comment
+// <- comment.line.double-slash.swift punctuation.definition.comment.begin.swift
+ // <- comment.line.double-slash.swift punctuation.definition.comment.begin.swift
+//^^^^^^^^^^ comment.line.double-slash.swift
+
 /* a block comment */noLongerAComment()
+// <- punctuation.definition.comment.begin.swift
+ // <- punctuation.definition.comment.begin.swift
+// ^^^^^^^^^^^^^^^^^^ comment.block.swift
+                // ^^ punctuation.definition.comment.end.swift
+                  // ^^^^^^^^^^^^^^^^ variable.function.swift
+                                  // ^ punctuation.section.parens.begin.swift
+                                   // ^ punctuation.section.parens.end.swift
+
 /*/ still just a block comment */noLongerAComment()
+
+
 /**/thatWasATinyBlockComment()
 /* block comments /* can be nested, */ like this! */noLongerAComment()
 
 import Foo   // whitespace ok
+// <- meta.import.swift keyword.control.import.swift
+//^^^^^ meta.import.swift
+//     ^^^ support.module.swift
 import Foo.Submodule
+// <- meta.import.swift keyword.control.import.swift
 import func Foo.Submodule.`func`
 import func Control.Monad.>>=
 
