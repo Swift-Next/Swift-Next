@@ -27,6 +27,31 @@
 /*/ still just a block comment */noLongerAComment()
 
 
+// Currently it treats let inputNameField and viewModel as a struct variable including it in symbol list
+struct Some {
+    static func createTextInputField(valuehandler _: ((_ value: String?) -> Void)? = nil) -> (String, String) {
+        let inputNameField = 123 // this shouldn't be presented in symbol list
+        let viewModel = 123 // this shouldn't be presented in symbol list
+        return ("", "")
+    }
+}
+
+// Currently it treats let infoSectionItems and viewModel as a struct variable including it in symbol list
+private func infoSectionItems(for paymentProfile: IpayouProfile?) -> [PaymentInfoViewModel] {
+  var infoSectionItems: [PaymentInfoViewModel] = []
+    if ACServices.session.currentUser?.isUSUser() != true {
+      infoSectionItems.append(
+      .init(
+        withModel: .init(
+          description: L10n.Payment.Info.Availability.description,
+          backroundColor: StylesManager.designStyle.neutral5()
+        )
+      )
+    )
+  }
+}
+
+
 /**/thatWasATinyBlockComment()
 /* block comments /* can be nested, */ like this! */noLongerAComment()
 
