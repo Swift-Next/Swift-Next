@@ -36,6 +36,31 @@ struct Some {
     }
 }
 
+var some: Int = 12
+
+class X {
+  private var some: String {
+    let x = 12
+  }
+}
+
+private let titleView: UILabel = {
+    let titleView = UILabel()
+    titleView.numberOfLines = 0
+    return titleView
+}()
+
+private lazy var titleView: UILabel = {
+    let titleView = UILabel()
+    titleView.numberOfLines = 0
+    return titleView
+}()
+
+func some(_ xxx: String) -> String {
+  var xsdfdfx = "123"
+  return xsdfdfx
+}
+
 // Currently it treats let infoSectionItems and viewModel as a struct variable including it in symbol list
 private func infoSectionItems(for paymentProfile: IpayouProfile?) -> [PaymentInfoViewModel] {
   var infoSectionItems: [PaymentInfoViewModel] = []
