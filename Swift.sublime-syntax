@@ -1159,7 +1159,7 @@ contexts:
     - match: '{{non_reserved_identifier}}'
       scope: support.other.swift
     - include: reserved-word-pop
-    - include: else-pop
+    # - include: else-pop # MARK: a dumb fix of functions local variable leakage.
 
   declaration-import:
     - match: \bimport\b
