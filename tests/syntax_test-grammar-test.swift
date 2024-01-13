@@ -40,6 +40,48 @@ var some: Int = 12
 
 class X {
   private var some: String {
+    var x = 12
+  }
+}
+
+struct X {
+  private var some: String {
+    var x = 12
+  }
+}
+
+enum X {
+  private var some: String {
+    var x = 12
+  }
+}
+
+actor X {
+  private var some: String {
+    var x = 12
+  }
+}
+
+class X {
+  private let some: String {
+    let x = 12
+  }
+}
+
+struct X {
+  private let some: String {
+    let x = 12
+  }
+}
+
+enum X {
+  private let some: String {
+    let x = 12
+  }
+}
+
+actor X {
+  private let some: String {
     let x = 12
   }
 }
