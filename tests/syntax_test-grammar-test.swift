@@ -36,6 +36,40 @@ struct Some {
     }
 }
 
+enum SomeEnum {
+    case nonUS
+
+    case unregistered
+
+    case retry
+    case documents
+    case kba
+
+    case unverified
+    case pending
+    case sourceMissed
+
+    case verified
+    case suspended
+    case deactivated
+
+    init(isUS: Bool, status: String?, count: Int?, pending: Bool?) {
+        switch (isUS, status, count, pending) {
+            case let (isUS, status, _, _) where isUS && status == nil: self = .unregistered
+            case let (isUS, _, _, _) where !isUS: self = .nonUS
+            case let (_, status, _, _) where status == "suspended": self = .suspended
+            case let (_, status, _, _) where status == "deactivated": self = .deactivated
+            case let (_, status, _, _) where status == "documents": self = .documents
+            case let (_, status, _, _) where status == "kba": self = .kba
+            case let (_, status, _, _) where status == "retry": self = .retry
+            case let (_, status, _, _) where status == "verified": self = .verified
+            case let (_, _, _, pending) where pending == true: self = .pending
+            case let (_, _, count, _) where count == 0: self = .sourceMissed
+            default: fatalError("Unexpected behavior")
+        }
+    }
+}
+
 var some: Int = 12
 
 class X {
@@ -101,6 +135,15 @@ private lazy var titleView: UILabel = {
 func some(_ xxx: String) -> String {
   var xsdfdfx = "123"
   return xsdfdfx
+}
+
+struct X {
+  struct Y {
+    var some: String { // should be in list
+      var x = 123 // should not be in list
+      return ""
+    }
+  }
 }
 
 // Currently it treats let infoSectionItems and viewModel as a struct variable including it in symbol list
