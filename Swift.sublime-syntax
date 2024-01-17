@@ -775,7 +775,7 @@ contexts:
                 1: keyword.control.conditional.case.swift
                 2: keyword.control.conditional.default.swift
               push:
-                - match: '='
+                - match: '\b=\b'
                   scope: keyword.operator.assignment.swift
                   pop: 1
                 - match: ':'
