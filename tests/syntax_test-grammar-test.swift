@@ -31,10 +31,38 @@
 struct Some {
     static func createTextInputField(valuehandler _: ((_ value: String?) -> Void)? = nil) -> (String, String) {
         let inputNameField = 123 // this shouldn't be presented in symbol list
-        let viewModel = 123 // this shouldn't be presented in symbol list
+        let viewModel = 123.1 // this shouldn't be presented in symbol list
         return ("", "")
     }
 }
+
+class Some {
+  init() {
+    WCSession.default.delegate = self
+    some.default:
+  }
+}
+
+init<T>(from value: T) {
+    var value = value
+    self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+}
+
+let foreOut = sensors[Sensor.Location.foreOut.rawValue]
+
+switch states {
+    // rawValue captures as constant.other.swift in line 791
+    case (.off, let foreOut, let foreIn) where foreOut.rawValue > 0 && foreIn.rawValue > 0:
+        return .takingOff(.heel)
+    case (let heel, .off, let foreIn) where heel.rawValue > 0 && foreIn.rawValue > 0:
+        return .takingOff(.foreOut)
+    case (let heel, let foreOut, .off) where heel.rawValue > 0 && foreOut.rawValue > 0:
+        return .takingOff(.foreIn)
+    case .some: return .some()
+    default: .takingOff(.foreIn)
+}
+
+delegates.invoke { _ = $0.calibrationChanged(Device.Origin(device, event: event), location: location, thresholds: sensor.thresholds) }
 
 enum SomeEnum {
     case nonUS
