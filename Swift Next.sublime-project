@@ -1,7 +1,7 @@
 {
     "folders": [
         {
-            "path": "."
+            "path": ".",
         }
     ],
     "settings": {
@@ -14,13 +14,13 @@
         "lsp_format_on_save": false,
         "LSP": {
             "SourceKit": {
-                "enabled": true
+                "enabled": false,
             },
             "LSP-yaml": {
                 "settings": {
-                    "yaml.format.printWidth": 100
-                }
-            }
-        }
-    }
+                    "yaml.format.printWidth": 100,
+                },
+            },
+        },
+    },
 }

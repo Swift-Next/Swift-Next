@@ -385,7 +385,7 @@ contexts:
       captures:
         0: meta.number.float.decimal.swift
         1: constant.numeric.value.swift
-        2: punctuation.separator.decimal.swift
+        2: constant.numeric.value.swift punctuation.separator.decimal.swift
         3: constant.numeric.value.swift
         4: constant.numeric.value.swift
     # hexadecimal-literal
@@ -621,7 +621,7 @@ contexts:
     # implicit-parameter-name:
     - match: \$([0-9]+)\b
       captures:
-        0: keyword.operator.implicit-parameter-name.swift
+        0: variable.parameter.implicit-parameter-name.swift
         1: meta.number.integer.decimal.swift constant.numeric.value.swift
 
     # key-path-expression
@@ -785,7 +785,7 @@ contexts:
                   captures:
                     1: keyword.declaration.var.swift
                     2: keyword.declaration.let.swift
-                - match: (\.)({{identifier}})
+                - match: (\.)({{identifier}})(?:\s*:)
                   captures:
                     1: punctuation.accessor.dot.swift
                     2: constant.other.swift
@@ -804,8 +804,6 @@ contexts:
       captures:
         1: punctuation.separator.labeled-statement.swift
         2: keyword.control.conditional.switch.swift
-    - match: \bdefault\b
-      scope: keyword.control.conditional.default.swift
 
     - match: \b(case)\b(?:\s+(\.)({{identifier}})(:))?
       captures:
@@ -1082,7 +1080,7 @@ contexts:
         # implicit-parameter-name
         - match: \$([0-9]+)\b
           captures:
-            0: keyword.operator.implicit-parameter-name.swift
+            0: variable.parameter.implicit-parameter-name.swift
             1: meta.number.integer.decimal.swift constant.numeric.value.swift
         # closure-signature in
         - match: \bin\b
