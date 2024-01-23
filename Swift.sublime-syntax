@@ -1801,16 +1801,19 @@ contexts:
     - meta_scope: meta.generic.swift
     - match: ({{identifier}})\s*(?=,)
       captures:
-        1: support.generic.swift
+        1: variable.parameter.type.swift
+    - match: ({{identifier}})
+      captures:
+        1: variable.parameter.type.swift
     - match: ({{identifier}})\s*(:)
       captures:
-        1: support.generic.swift
+        1: variable.parameter.type.swift
         2: punctuation.separator.annotation.conformance-or-inheritance.swift
       set:
         - meta_scope: meta.generic.swift
         - match: ({{identifier}})\s*(:)
           captures:
-            1: support.generic.swift
+            1: variable.parameter.type.swift
             2: punctuation.separator.annotation.conformance-or-inheritance.swift
         - match: '&'
           scope: keyword.operator.protocol-composition-type.swift
@@ -1833,7 +1836,7 @@ contexts:
     - match: (,)\s*?({{identifier}})(?!\s*:)
       captures:
         1: punctuation.separator.continuation.swift
-        2: support.generic.swift
+        2: variable.parameter.type.swift
     - match: \,
       scope: punctuation.separator.continuation.swift
     - match: (<)(?=[{{generic_clause_chars}}])
@@ -1851,7 +1854,7 @@ contexts:
         # Note: This disables identifier-support coloring:
         # - match: (?={{identifier}}(\.)(?={{identifier}})?)\s*(?=[:=])
         #   captures:
-        #     1: support.generic.swift
+        #     1: variable.parameter.type.swift
         #     2: punctuation.separator.continuation.swift
         - match: ':'
           scope: punctuation.separator.annotation.conformance-or-inheritance.swift
@@ -2163,7 +2166,7 @@ contexts:
       scope: support.function.cocoa.swift
     # Generic Type (e.g. <T>)
     - match: \b[A-Z]\b(?!`)
-      scope: support.generic.swift
+      scope: support.class.type
     # Generic scope for a 'T'ype name or '_'Private type
     - match: \b((?:[A-Z]|_+[A-Z])[{{identifier_character}}]+)\b(?!`)
       scope: support.other.swift
