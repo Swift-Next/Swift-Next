@@ -45,6 +45,21 @@ class Some {
 
 init<T>(from value: T) {
     var value = value
+    var some = Int(x) as? T
+    self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+}
+
+init<T, V>(from value: T, second: V) {
+    var value = value
+    var some = Int(12) as? T
+    var another = Int(32) as? V
+    self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+}
+
+init<Tol, Vol>(from value: Tol, second: Vol) {
+    var value = value
+    var some = Int(12) as? Tol
+    var another = Int(32) as? Vol
     self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
 }
 
