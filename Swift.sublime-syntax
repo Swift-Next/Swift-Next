@@ -795,6 +795,7 @@ contexts:
                 - include: punctuations
                 - include: statements-scope-block
                 - include: statements-scope-any
+                - include: else-pop
             - include: statements-scope-block
             - include: statements-scope-any
             - include: identifier-consumer
