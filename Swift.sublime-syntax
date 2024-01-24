@@ -785,7 +785,7 @@ contexts:
                   captures:
                     1: keyword.declaration.var.swift
                     2: keyword.declaration.let.swift
-                - match: (\.)({{identifier}})(?:\s*:)
+                - match: (\.)({{identifier}})(?:\s*[:,])
                   captures:
                     1: punctuation.accessor.dot.swift
                     2: constant.other.swift
@@ -804,6 +804,9 @@ contexts:
       captures:
         1: punctuation.separator.labeled-statement.swift
         2: keyword.control.conditional.switch.swift
+    - match: (default)(?:\s*:)
+      captures:
+        1: keyword.control.conditional.default.swift
 
     - match: \b(case)\b(?:\s+(\.)({{identifier}})(:))?
       captures:
