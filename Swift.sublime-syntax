@@ -785,7 +785,7 @@ contexts:
                   captures:
                     1: keyword.declaration.var.swift
                     2: keyword.declaration.let.swift
-                - match: (\.)({{identifier}})(?:\s*:)
+                - match: (\.)({{identifier}})(?:\s*[:,])
                   captures:
                     1: punctuation.accessor.dot.swift
                     2: constant.other.swift
@@ -795,6 +795,7 @@ contexts:
                 - include: punctuations
                 - include: statements-scope-block
                 - include: statements-scope-any
+                - include: else-pop
             - include: statements-scope-block
             - include: statements-scope-any
             - include: identifier-consumer
