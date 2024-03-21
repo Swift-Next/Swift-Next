@@ -36,6 +36,19 @@ struct Some {
     }
 }
 
+// any unhighlighted
+private func createFieldModels() -> [any InputFieldModelProtocol] {
+    let viewModels: [any InputFieldModelProtocol] = [
+        createAddress1FieldModel(),
+        createAddress2FieldModel(),
+        createCityFieldModel(),
+        createStateFieldModel(),
+        createZipcodeFieldModel()
+    ]
+
+    return viewModels
+}
+
 class Some {
   init() {
     WCSession.default.delegate = self
