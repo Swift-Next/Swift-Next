@@ -38,6 +38,14 @@
 
 ## Install
 
+### Package Control
+
+1. Install the Sublime Text Package Control plugin if you haven't done this before.
+2. Open the command palette and type Package Control: Install Package.
+3. Type OpenAI and press Enter.
+
+### Manually
+
 1. Download this repository
 2. Move extracted directory into: Sublime Text → Preferences → Browse Packages... → "User" directory
 
