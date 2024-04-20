@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/Sublime%20Text-4+-green.svg"></img>
 </p>
 
-> **Important**
+> [!IMPORTANT]
 > This is the fork of the [Swift-Next](https://github.com/aerobounce/Swift-Next) repository that appears to have been deprecated for some time. The purpose of it's twofold: to serve as the source of the package for the ST package control tool and to provide a space for community contribution. All of the incredible work on this project (with the exception of a few minor bug fixes) was done by @aerobounce. If you are able to contact him, please do so to allow him to take ownership of this organization. It is unfair that he stopped just before reaching the finish line in his long journey of success.
 
 ## Features
