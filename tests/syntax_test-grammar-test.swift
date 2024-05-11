@@ -10,25 +10,33 @@
  * Comment Tests
  *****************************************************************************/
 
-// a comment
-// <- comment.line.double-slash.swift punctuation.definition.comment.begin.swift
- // <- comment.line.double-slash.swift punctuation.definition.comment.begin.swift
-//^^^^^^^^^^ comment.line.double-slash.swift
+  // a comment
+//^^ comment.line.double-slash.swift punctuation.definition.comment.begin.swift
+  //^^^^^^^^^^ comment.line.double-slash.swift
 
-/* a block comment */noLongerAComment()
-// <- punctuation.definition.comment.begin.swift
- // <- punctuation.definition.comment.begin.swift
-// ^^^^^^^^^^^^^^^^^^ comment.block.swift
-                // ^^ punctuation.definition.comment.end.swift
-                  // ^^^^^^^^^^^^^^^^ variable.function.swift
-                                  // ^ punctuation.section.parens.begin.swift
-                                   // ^ punctuation.section.parens.end.swift
+  /* a block comment */noLongerAComment()
+//^^ punctuation.definition.comment.begin.swift
+//^^^^^^^^^^^^^^^^^^^^^ comment.block.swift
+                  // ^^ punctuation.definition.comment.end.swift
+                    // ^^^^^^^^^^^^^^^^ variable.function.swift
+                                    // ^ punctuation.section.parens.begin.swift
+                                     // ^ punctuation.section.parens.end.swift
 
-/*/ still just a block comment */noLongerAComment()
+  /*/ still just a block comment */noLongerAComment()
+//^^ punctuation.definition.comment.begin.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block.swift
+                              // ^^ punctuation.definition.comment.end.swift
+                                // ^^^^^^^^^^^^^^^^ variable.function.swift
+                                                // ^ punctuation.section.parens.begin.swift
+                                                 // ^ punctuation.section.parens.end.swift
 
 
 // Currently it treats let inputNameField and viewModel as a struct variable including it in symbol list
-struct Some {
+  struct Some {
+//^^^^^^^^^^^^^ meta.struct.swift
+//^^^^^^ keyword.declaration.struct.swift
+      // ^^^^ entity.name.struct.swift
+            //^ meta.block.swift
     static func createTextInputField(valuehandler _: ((_ value: String?) -> Void)? = nil) -> (String, String) {
         let inputNameField = 123 // this shouldn't be presented in symbol list
         let viewModel = 123.1 // this shouldn't be presented in symbol list
