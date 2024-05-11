@@ -253,6 +253,9 @@ __FILE__, __LINE__, __FUNCTION__, __DSO_HANDLE__
 
 // MARK: Attributes
 
+func createSections(with fieldModels: [any InputFieldModelProtocol]) { }
+func createSections(with fieldModels: [some InputFieldModelProtocol]) { }
+
 @available(
   macOS 1.2, macOSApplicationExtension 1.2, OSX, tvOS 1.4, iOS, watchOS,
   swift 5, UIKitForMac,

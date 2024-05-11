@@ -945,12 +945,12 @@ contexts:
 
   modifier-types:
     # opaque-type
-    - match: (?:\s|^)(some)(?=\s)
+    - match: (?:[\s|^\[\(])(some)(?=\s)
       captures:
         1: storage.modifier.opaque.swift
 
     # existential-type
-    - match: (?:\s|^)(any)(?=\s)
+    - match: (?:[\s|^\[\(])(any)(?=\s)
       captures:
         1: storage.modifier.existential.swift
 
