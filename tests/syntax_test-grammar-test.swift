@@ -57,6 +57,19 @@ private func createFieldModels() -> [any InputFieldModelProtocol] {
     return viewModels
 }
 
+for anUser: User in anUsers {
+//               ^ in statement
+  print(anUser)
+}
+
+for i in 0..<n {
+    if tmp_points[i][0] <= mid && tmp_points[i][1] <= mid {
+        temp[s[s.index(s.startIndex, offsetBy: i)]] = (temp[s[s.index(s.startIndex, offsetBy: i)]] ?? 0) + 1
+            // ^ has to be a variable as well.
+                                                           // ^ has to be a variable as well.
+    }
+}
+
 class Some {
   init() {
     WCSession.default.delegate = self
