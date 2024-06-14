@@ -1,0 +1,39 @@
+{
+    "target": "exec",
+    "selector": "source.swift",
+    "file_regex": "^(?=/?)([^:]+):(\\d+):(\\d+): (.*)",
+    "keyfile": "Package.swift",
+    "env": {
+        "XPC_FLAGS": "0x0",
+        "cwd": "$folder",
+    },
+    "cancel": {
+        "kill": true,
+        "kill_previous": true
+    },
+    "working_dir": "$folder",
+    "shell_cmd": "swift $file",
+
+    "variants": [
+        {
+            "name": "Package: Build",
+            "shell_cmd": "swift build"
+        },
+        {
+            "name": "Package: Test",
+            "shell_cmd": "swift test"
+        },
+        {
+            "name": "Package: Resolve",
+            "shell_cmd": "swift package resolve"
+        },
+        {
+            "name": "Package: Update",
+            "shell_cmd": "swift package update"
+        },
+        {
+            "name": "Package: Clean",
+            "shell_cmd": "swift package clean"
+        },
+    ]
+}
