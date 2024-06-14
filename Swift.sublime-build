@@ -5,21 +5,23 @@
     "keyfile": "Package.swift",
     "env": {
         "XPC_FLAGS": "0x0",
-        "TOOLCHAINS": "swift",
         "cwd": "$folder",
     },
     "cancel": {
         "kill": true,
         "kill_previous": true
     },
-    "quiet": true,
     "working_dir": "$folder",
-    "shell_cmd": "swift $file_name",
+    "shell_cmd": "swift $file",
 
     "variants": [
         {
             "name": "Package: Build",
             "shell_cmd": "swift build"
+        },
+        {
+            "name": "Package: Test",
+            "shell_cmd": "swift test"
         },
         {
             "name": "Package: Resolve",
