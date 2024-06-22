@@ -62,6 +62,13 @@ for anUser: User in anUsers {
   print(anUser)
 }
 
+func dfs(_ visited: inout [[Bool]], _ grid: [[Character]], _ i: Int, _ j: Int) {
+    guard i >= 0, i < grid.count, j >= 0
+                 // ^ should be operator.comparison.swift
+                                 // ^^ should be operator.comparison.swift, but now it's generic
+
+}
+
 for i in 0..<n {
     if tmp_points[i][0] <= mid && tmp_points[i][1] <= mid {
         temp[s[s.index(s.startIndex, offsetBy: i)]] = (temp[s[s.index(s.startIndex, offsetBy: i)]] ?? 0) + 1
