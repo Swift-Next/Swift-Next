@@ -10,6 +10,10 @@
         "index_exclude_patterns": [
             "*.swift"
         ],
+        // OpenAI assistant
+        "ai_assistant": {
+            "cache_prefix": "swift_next_project",
+        },
         // LSP
         "lsp_format_on_save": false,
         "LSP": {
