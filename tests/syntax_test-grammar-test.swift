@@ -204,6 +204,27 @@ actor X {
   }
 }
 
+
+// nested structs symbols list test
+struct Some { // should be presented
+    let xxx = "" // should be presented
+    var zzz = "" // should be presented
+
+    struct Nested { // should be presented
+        var xxx = 1 // should be presented
+
+        func someFunc() { // should be presented
+            var x = 123 // should NOT be presented
+            let z = 222 // should NOT be presented
+        }
+    }
+
+    func anotherFunc() { // should be presented
+        var x = 123 // should NOT be presented
+        let z = 222 // should NOT be presented
+    }
+}
+
 private let titleView: UILabel = {
     let titleView = UILabel()
     titleView.numberOfLines = 0
