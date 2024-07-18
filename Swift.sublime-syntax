@@ -801,7 +801,6 @@ contexts:
             - include: statements-scope-block
             - include: statements-scope-any
             - include: identifier-consumer
-            - include: else-pop
 
     - match: (?:{{identifier}}\s*(:)\s*)?\b(switch)\b
       captures:
