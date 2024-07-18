@@ -298,6 +298,8 @@ contexts:
       scope: punctuation.definition.comment.begin.swift
       push:
         - meta_scope: comment.block.documentation.swift
+        - match: (`[^`]+?`)
+          scope: markup.raw.inline.swift
         - match: .*\*/
           scope: punctuation.definition.comment.end.swift
           pop: 1
@@ -799,7 +801,6 @@ contexts:
             - include: statements-scope-block
             - include: statements-scope-any
             - include: identifier-consumer
-            - include: else-pop
 
     - match: (?:{{identifier}}\s*(:)\s*)?\b(switch)\b
       captures:
