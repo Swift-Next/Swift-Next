@@ -229,6 +229,64 @@
 //                          ^^ meta.block.swift
 //                          ^ punctuation.section.block.begin.swift
 //                           ^ punctuation.section.block.end.swift
+
+
+// MARK: Protocols Tests
+// MARK: Protocols Definition Tests
+
+  protocol SomeProtocol {}
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//^^^^^^^^ keyword.declaration.protocol.swift
+//         ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                      ^^ meta.block.swift
+//                      ^ punctuation.section.block.begin.swift
+//                       ^ punctuation.section.block.end.swift
+
+  public protocol SomeProtocol {}
+//^^^^^^ storage.modifier.access-level.public.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//       ^^^^^^^^ keyword.declaration.protocol.swift
+//                ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                             ^^ meta.block.swift
+//                             ^ punctuation.section.block.begin.swift
+//                              ^ punctuation.section.block.end.swift
+
+  package protocol SomeProtocol {}
+//^^^^^^^ storage.modifier.access-level.package.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//        ^^^^^^^^ keyword.declaration.protocol.swift
+//                 ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                              ^^ meta.block.swift
+//                              ^ punctuation.section.block.begin.swift
+//                               ^ punctuation.section.block.end.swift
+
+  internal protocol SomeProtocol {}
+//^^^^^^^^ storage.modifier.access-level.internal.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//         ^^^^^^^^ keyword.declaration.protocol.swift
+//                  ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                               ^^ meta.block.swift
+//                               ^ punctuation.section.block.begin.swift
+//                                ^ punctuation.section.block.end.swift
+
+  fileprivate protocol SomeProtocol {}
+//^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//            ^^^^^^^^ keyword.declaration.protocol.swift
+//                     ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                                  ^^ meta.block.swift
+//                                  ^ punctuation.section.block.begin.swift
+//                                   ^ punctuation.section.block.end.swift
+
+  private protocol SomeProtocol {}
+//^^^^^^^ storage.modifier.access-level.private.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//        ^^^^^^^^ keyword.declaration.protocol.swift
+//                 ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                              ^^ meta.block.swift
+//                              ^ punctuation.section.block.begin.swift
+//                               ^ punctuation.section.block.end.swift
+
 // Currently it treats let inputNameField and viewModel as a struct variable including it in symbol list
   struct Some {
 //^^^^^^^^^^^^^ meta.struct.swift
