@@ -11,7 +11,7 @@
   extension SomeClassExtension {}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //^^^^^^^^^ keyword.declaration.extension.swift
-//          ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//          ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                             ^^ meta.block.swift
 //                             ^ punctuation.section.block.begin.swift
 //                              ^ punctuation.section.block.end.swift
@@ -22,7 +22,7 @@
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //       ^^^^^^^^^ keyword.declaration.extension.swift
-//                 ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                 ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                    ^^ meta.block.swift
 //                                    ^ punctuation.section.block.begin.swift
 //                                     ^ punctuation.section.block.end.swift
@@ -31,7 +31,7 @@
 //^^^^^^^ storage.modifier.access-level.package.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //        ^^^^^^^^^ keyword.declaration.extension.swift
-//                  ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                     ^^ meta.block.swift
 //                                     ^ punctuation.section.block.begin.swift
 //                                      ^ punctuation.section.block.end.swift
@@ -40,7 +40,7 @@
 //^^^^^^^^ storage.modifier.access-level.internal.swift
 //         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //         ^^^^^^^^^ keyword.declaration.extension.swift
-//                   ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                   ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                      ^^ meta.block.swift
 //                                      ^ punctuation.section.block.begin.swift
 //                                       ^ punctuation.section.block.end.swift
@@ -49,7 +49,7 @@
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
 //            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //            ^^^^^^^^^ keyword.declaration.extension.swift
-//                      ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                      ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                         ^^ meta.block.swift
 //                                         ^ punctuation.section.block.begin.swift
 //                                          ^ punctuation.section.block.end.swift
@@ -58,7 +58,7 @@
 //^^^^^^^ storage.modifier.access-level.private.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //        ^^^^^^^^^ keyword.declaration.extension.swift
-//                  ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                     ^^ meta.block.swift
 //                                     ^ punctuation.section.block.begin.swift
 //                                      ^ punctuation.section.block.end.swift
@@ -69,7 +69,7 @@
   extension SomeClassExtension: SomeProtocol {}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //^^^^^^^^^ keyword.declaration.extension.swift
-//          ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//          ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                            ^ punctuation.separator.annotation.conformance.swift
 //                              ^^^^^^^^^^^^ support.class.swift
 //                                           ^^ meta.block.swift
@@ -81,7 +81,7 @@
   extension SomeClassExtension: SomeProtocol, SomeAnotherProtocol {}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //^^^^^^^^^ keyword.declaration.extension.swift
-//          ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//          ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                            ^ punctuation.separator.annotation.conformance.swift
 //                              ^^^^^^^^^^^^ support.class.swift
 //                                          ^ punctuation.separator.continuation.swift
@@ -96,7 +96,7 @@
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //       ^^^^^^^^^ keyword.declaration.extension.swift
-//                 ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                 ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                   ^ punctuation.separator.annotation.conformance.swift
 //                                     ^^^^^^^^^^^^ support.class.swift
 //                                                 ^ punctuation.separator.continuation.swift
@@ -109,7 +109,7 @@
 //^^^^^^^ storage.modifier.access-level.package.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //        ^^^^^^^^^ keyword.declaration.extension.swift
-//                  ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                    ^ punctuation.separator.annotation.conformance.swift
 //                                      ^^^^^^^^^^^^ support.class.swift
 //                                                  ^ punctuation.separator.continuation.swift
@@ -122,7 +122,7 @@
 //^^^^^^^^ storage.modifier.access-level.internal.swift
 //         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //         ^^^^^^^^^ keyword.declaration.extension.swift
-//                   ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                   ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                     ^ punctuation.separator.annotation.conformance.swift
 //                                       ^^^^^^^^^^^^ support.class.swift
 //                                                   ^ punctuation.separator.continuation.swift
@@ -135,7 +135,7 @@
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
 //            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //            ^^^^^^^^^ keyword.declaration.extension.swift
-//                      ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                      ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                        ^ punctuation.separator.annotation.conformance.swift
 //                                          ^^^^^^^^^^^^ support.class.swift
 //                                                      ^ punctuation.separator.continuation.swift
@@ -148,7 +148,7 @@
 //^^^^^^^ storage.modifier.access-level.private.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
 //        ^^^^^^^^^ keyword.declaration.extension.swift
-//                  ^^^^^^^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                    ^ punctuation.separator.annotation.conformance.swift
 //                                      ^^^^^^^^^^^^ support.class.swift
 //                                                  ^ punctuation.separator.continuation.swift

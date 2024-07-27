@@ -9,7 +9,7 @@
   actor SomeActor {}
 //^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //^^^^^ keyword.declaration.actor.swift
-//      ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//      ^^^^^^^^^ entity.name.actor.swift - keyword
 //                ^^ meta.block.swift
 //                ^ punctuation.section.block.begin.swift
 //                 ^ punctuation.section.block.end.swift
@@ -20,7 +20,7 @@
 //^^^^ storage.modifier.access-level.open.swift
 //     ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //     ^^^^^ keyword.declaration.actor.swift
-//           ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//           ^^^^^^^^^ entity.name.actor.swift - keyword
 //                     ^^ meta.block.swift
 //                     ^ punctuation.section.block.begin.swift
 //                      ^ punctuation.section.block.end.swift
@@ -29,7 +29,7 @@
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //       ^^^^^ keyword.declaration.actor.swift
-//             ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//             ^^^^^^^^^ entity.name.actor.swift - keyword
 //                       ^^ meta.block.swift
 //                       ^ punctuation.section.block.begin.swift
 //                        ^ punctuation.section.block.end.swift
@@ -38,7 +38,7 @@
 //^^^^^^^ storage.modifier.access-level.package.swift
 //        ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //        ^^^^^ keyword.declaration.actor.swift
-//              ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                        ^^ meta.block.swift
 //                        ^ punctuation.section.block.begin.swift
 //                         ^ punctuation.section.block.end.swift
@@ -47,7 +47,7 @@
 //^^^^^^^^ storage.modifier.access-level.internal.swift
 //         ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //         ^^^^^ keyword.declaration.actor.swift
-//               ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//               ^^^^^^^^^ entity.name.actor.swift - keyword
 //                         ^^ meta.block.swift
 //                         ^ punctuation.section.block.begin.swift
 //                          ^ punctuation.section.block.end.swift
@@ -56,7 +56,7 @@
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
 //            ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //            ^^^^^ keyword.declaration.actor.swift
-//                  ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                  ^^^^^^^^^ entity.name.actor.swift - keyword
 //                            ^^ meta.block.swift
 //                            ^ punctuation.section.block.begin.swift
 //                             ^ punctuation.section.block.end.swift
@@ -65,7 +65,7 @@
 //^^^^^^^ storage.modifier.access-level.private.swift
 //        ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //        ^^^^^ keyword.declaration.actor.swift
-//              ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                        ^^ meta.block.swift
 //                        ^ punctuation.section.block.begin.swift
 //                         ^ punctuation.section.block.end.swift
@@ -76,7 +76,7 @@
 //^^^^ storage.modifier.access-level.open.swift
 //     ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //     ^^^^^ keyword.declaration.actor.swift
-//           ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//           ^^^^^^^^^ entity.name.actor.swift - keyword
 //                     ^^ meta.block.swift
 //                     ^ punctuation.section.block.begin.swift
 //                      ^ punctuation.section.block.end.swift
@@ -86,7 +86,7 @@
 //       ^^^^^ storage.modifier.final.swift
 //             ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //             ^^^^^ keyword.declaration.actor.swift
-//                   ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                   ^^^^^^^^^ entity.name.actor.swift - keyword
 //                             ^^ meta.block.swift
 //                             ^ punctuation.section.block.begin.swift
 //                              ^ punctuation.section.block.end.swift
@@ -96,7 +96,7 @@
 //      ^^^^^^ storage.modifier.access-level.public.swift
 //             ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //             ^^^^^ keyword.declaration.actor.swift
-//                   ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                   ^^^^^^^^^ entity.name.actor.swift - keyword
 //                             ^^ meta.block.swift
 //                             ^ punctuation.section.block.begin.swift
 //                              ^ punctuation.section.block.end.swift
@@ -106,7 +106,7 @@
 //      ^^^^^^^ storage.modifier.access-level.package.swift
 //              ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //              ^^^^^ keyword.declaration.actor.swift
-//                    ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                    ^^^^^^^^^ entity.name.actor.swift - keyword
 //                              ^^ meta.block.swift
 //                              ^ punctuation.section.block.begin.swift
 //                               ^ punctuation.section.block.end.swift
@@ -116,7 +116,7 @@
 //      ^^^^^^^^ storage.modifier.access-level.internal.swift
 //               ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //               ^^^^^ keyword.declaration.actor.swift
-//                     ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                     ^^^^^^^^^ entity.name.actor.swift - keyword
 //                               ^^ meta.block.swift
 //                               ^ punctuation.section.block.begin.swift
 //                                ^ punctuation.section.block.end.swift
@@ -126,7 +126,7 @@
 //      ^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
 //                  ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //                  ^^^^^ keyword.declaration.actor.swift
-//                        ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                        ^^^^^^^^^ entity.name.actor.swift - keyword
 //                                  ^^ meta.block.swift
 //                                  ^ punctuation.section.block.begin.swift
 //                                   ^ punctuation.section.block.end.swift
@@ -136,7 +136,7 @@
 //      ^^^^^^^ storage.modifier.access-level.private.swift
 //              ^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //              ^^^^^ keyword.declaration.actor.swift
-//                    ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                    ^^^^^^^^^ entity.name.actor.swift - keyword
 //                              ^^ meta.block.swift
 //                              ^ punctuation.section.block.begin.swift
 //                               ^ punctuation.section.block.end.swift
@@ -146,7 +146,7 @@
   actor SomeActor: SomeSuperActor {}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //^^^^^ keyword.declaration.actor.swift
-//      ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//      ^^^^^^^^^ entity.name.actor.swift - keyword
 //               ^ punctuation.separator.annotation.conformance.swift
 //                 ^^^^^^^^^^^^^^ support.class.swift
 //                                ^^ meta.block.swift
@@ -158,7 +158,7 @@
   actor SomeActor: SomeSuperActor, SomeProtocol {}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //^^^^^ keyword.declaration.actor.swift
-//      ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//      ^^^^^^^^^ entity.name.actor.swift - keyword
 //               ^ punctuation.separator.annotation.conformance.swift
 //                 ^^^^^^^^^^^^^^ support.class.swift
 //                               ^ punctuation.separator.continuation.swift
@@ -173,7 +173,7 @@
 //^^^^ storage.modifier.access-level.open.swift
 //     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //     ^^^^^ keyword.declaration.actor.swift
-//           ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//           ^^^^^^^^^ entity.name.actor.swift - keyword
 //                    ^ punctuation.separator.annotation.conformance.swift
 //                      ^^^^^^^^^^^^^^ support.class.swift
 //                                    ^ punctuation.separator.continuation.swift
@@ -186,7 +186,7 @@
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //       ^^^^^ keyword.declaration.actor.swift
-//             ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//             ^^^^^^^^^ entity.name.actor.swift - keyword
 //                      ^ punctuation.separator.annotation.conformance.swift
 //                        ^^^^^^^^^^^^^^ support.class.swift
 //                                      ^ punctuation.separator.continuation.swift
@@ -199,7 +199,7 @@
 //^^^^^^^ storage.modifier.access-level.package.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //        ^^^^^ keyword.declaration.actor.swift
-//              ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                       ^ punctuation.separator.annotation.conformance.swift
 //                         ^^^^^^^^^^^^^^ support.class.swift
 //                                       ^ punctuation.separator.continuation.swift
@@ -212,7 +212,7 @@
 //^^^^^^^^ storage.modifier.access-level.internal.swift
 //         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //         ^^^^^ keyword.declaration.actor.swift
-//               ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//               ^^^^^^^^^ entity.name.actor.swift - keyword
 //                        ^ punctuation.separator.annotation.conformance.swift
 //                          ^^^^^^^^^^^^^^ support.class.swift
 //                                        ^ punctuation.separator.continuation.swift
@@ -225,7 +225,7 @@
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
 //            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //            ^^^^^ keyword.declaration.actor.swift
-//                  ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//                  ^^^^^^^^^ entity.name.actor.swift - keyword
 //                           ^ punctuation.separator.annotation.conformance.swift
 //                             ^^^^^^^^^^^^^^ support.class.swift
 //                                           ^ punctuation.separator.continuation.swift
@@ -238,7 +238,7 @@
 //^^^^^^^ storage.modifier.access-level.private.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
 //        ^^^^^ keyword.declaration.actor.swift
-//              ^^^^^^^^^ keyword.symbol-list.swift entity.name.actor.swift
+//              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                       ^ punctuation.separator.annotation.conformance.swift
 //                         ^^^^^^^^^^^^^^ support.class.swift
 //                                       ^ punctuation.separator.continuation.swift

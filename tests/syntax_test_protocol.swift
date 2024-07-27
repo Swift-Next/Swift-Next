@@ -7,7 +7,7 @@
   protocol SomeProtocol {}
 //^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //^^^^^^^^ keyword.declaration.protocol.swift
-//         ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//         ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                      ^^ meta.block.swift
 //                      ^ punctuation.section.block.begin.swift
 //                       ^ punctuation.section.block.end.swift
@@ -18,7 +18,7 @@
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //       ^^^^^^^^ keyword.declaration.protocol.swift
-//                ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                             ^^ meta.block.swift
 //                             ^ punctuation.section.block.begin.swift
 //                              ^ punctuation.section.block.end.swift
@@ -27,7 +27,7 @@
 //^^^^^^^ storage.modifier.access-level.package.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //        ^^^^^^^^ keyword.declaration.protocol.swift
-//                 ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                              ^^ meta.block.swift
 //                              ^ punctuation.section.block.begin.swift
 //                               ^ punctuation.section.block.end.swift
@@ -36,7 +36,7 @@
 //^^^^^^^^ storage.modifier.access-level.internal.swift
 //         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //         ^^^^^^^^ keyword.declaration.protocol.swift
-//                  ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                  ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                               ^^ meta.block.swift
 //                               ^ punctuation.section.block.begin.swift
 //                                ^ punctuation.section.block.end.swift
@@ -45,7 +45,7 @@
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
 //            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //            ^^^^^^^^ keyword.declaration.protocol.swift
-//                     ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                     ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                                  ^^ meta.block.swift
 //                                  ^ punctuation.section.block.begin.swift
 //                                   ^ punctuation.section.block.end.swift
@@ -54,7 +54,7 @@
 //^^^^^^^ storage.modifier.access-level.private.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //        ^^^^^^^^ keyword.declaration.protocol.swift
-//                 ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                              ^^ meta.block.swift
 //                              ^ punctuation.section.block.begin.swift
 //                               ^ punctuation.section.block.end.swift
@@ -64,7 +64,7 @@
   protocol SomeProtocol: SomeAnotherProtocol {}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //^^^^^^^^ keyword.declaration.protocol.swift
-//         ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//         ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                     ^ punctuation.separator.annotation.conformance.swift
 //                       ^^^^^^^^^^^^^^^^^^^ support.class.swift
 //                                           ^^ meta.block.swift
@@ -76,7 +76,7 @@
   protocol SomeProtocol: SomeAnotherProtocol, SomeThirdProtocol {}
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //^^^^^^^^ keyword.declaration.protocol.swift
-//         ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//         ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                     ^ punctuation.separator.annotation.conformance.swift
 //                       ^^^^^^^^^^^^^^^^^^^ support.class.swift
 //                                          ^ punctuation.separator.continuation.swift
@@ -91,7 +91,7 @@
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //       ^^^^^^^^ keyword.declaration.protocol.swift
-//                ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                            ^ punctuation.separator.annotation.conformance.swift
 //                              ^^^^^^^^^^^^^^^^^^^ support.class.swift
 //                                                 ^ punctuation.separator.continuation.swift
@@ -104,7 +104,7 @@
 //^^^^^^^ storage.modifier.access-level.package.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //        ^^^^^^^^ keyword.declaration.protocol.swift
-//                 ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                             ^ punctuation.separator.annotation.conformance.swift
 //                               ^^^^^^^^^^^^^^^^^^^ support.class.swift
 //                                                  ^ punctuation.separator.continuation.swift
@@ -117,7 +117,7 @@
 //^^^^^^^^ storage.modifier.access-level.internal.swift
 //         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //         ^^^^^^^^ keyword.declaration.protocol.swift
-//                  ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                  ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                              ^ punctuation.separator.annotation.conformance.swift
 //                                ^^^^^^^^^^^^^^^^^^^ support.class.swift
 //                                                   ^ punctuation.separator.continuation.swift
@@ -130,7 +130,7 @@
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
 //            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //            ^^^^^^^^ keyword.declaration.protocol.swift
-//                     ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                     ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                                 ^ punctuation.separator.annotation.conformance.swift
 //                                   ^^^^^^^^^^^^^^^^^^^ support.class.swift
 //                                                      ^ punctuation.separator.continuation.swift
@@ -143,7 +143,7 @@
 //^^^^^^^ storage.modifier.access-level.private.swift
 //        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
 //        ^^^^^^^^ keyword.declaration.protocol.swift
-//                 ^^^^^^^^^^^^ keyword.symbol-list.swift entity.name.protocol.swift
+//                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                             ^ punctuation.separator.annotation.conformance.swift
 //                               ^^^^^^^^^^^^^^^^^^^ support.class.swift
 //                                                  ^ punctuation.separator.continuation.swift
