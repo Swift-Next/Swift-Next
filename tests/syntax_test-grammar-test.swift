@@ -175,6 +175,60 @@
 //                       ^^ meta.block.swift
 //                       ^ punctuation.section.block.begin.swift
 //                        ^ punctuation.section.block.end.swift
+
+// MARK: Structs Tests
+// MARK: Structs Definition Tests
+
+  struct SomeStruct {}
+//^^^^^^^^^^^^^^^^^^^^ meta.struct.swift
+//^^^^^^ keyword.declaration.struct.swift
+//       ^^^^^^^^^^ entity.name.struct.swift
+//                  ^^ meta.block.swift
+//                  ^ punctuation.section.block.begin.swift
+//                   ^ punctuation.section.block.end.swift
+  public struct SomeStruct {}
+//^^^^^^ storage.modifier.access-level.public.swift
+//       ^^^^^^^^^^^^^^^^^^^^ meta.struct.swift
+//       ^^^^^^ keyword.declaration.struct.swift
+//              ^^^^^^^^^^ entity.name.struct.swift
+//                         ^^ meta.block.swift
+//                         ^ punctuation.section.block.begin.swift
+//                          ^ punctuation.section.block.end.swift
+
+  package struct SomeStruct {}
+//^^^^^^^ storage.modifier.access-level.package.swift
+//        ^^^^^^^^^^^^^^^^^^^^ meta.struct.swift
+//        ^^^^^^ keyword.declaration.struct.swift
+//               ^^^^^^^^^^ entity.name.struct.swift
+//                          ^^ meta.block.swift
+//                          ^ punctuation.section.block.begin.swift
+//                           ^ punctuation.section.block.end.swift
+  internal struct SomeStruct {}
+//^^^^^^^^ storage.modifier.access-level.internal.swift
+//         ^^^^^^^^^^^^^^^^^^^^ meta.struct.swift
+//         ^^^^^^ keyword.declaration.struct.swift
+//                ^^^^^^^^^^ entity.name.struct.swift
+//                           ^^ meta.block.swift
+//                           ^ punctuation.section.block.begin.swift
+//                            ^ punctuation.section.block.end.swift
+
+  fileprivate struct SomeStruct {}
+//^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
+//            ^^^^^^^^^^^^^^^^^^^^ meta.struct.swift
+//            ^^^^^^ keyword.declaration.struct.swift
+//                   ^^^^^^^^^^ entity.name.struct.swift
+//                              ^^ meta.block.swift
+//                              ^ punctuation.section.block.begin.swift
+//                               ^ punctuation.section.block.end.swift
+
+  private struct SomeStruct {}
+//^^^^^^^ storage.modifier.access-level.private.swift
+//        ^^^^^^^^^^^^^^^^^^^^ meta.struct.swift
+//        ^^^^^^ keyword.declaration.struct.swift
+//               ^^^^^^^^^^ entity.name.struct.swift
+//                          ^^ meta.block.swift
+//                          ^ punctuation.section.block.begin.swift
+//                           ^ punctuation.section.block.end.swift
 // Currently it treats let inputNameField and viewModel as a struct variable including it in symbol list
   struct Some {
 //^^^^^^^^^^^^^ meta.struct.swift
