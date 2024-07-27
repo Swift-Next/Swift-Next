@@ -26,5 +26,6 @@
                 },
             },
         },
+        "SublimeLinter.linters.swiftlint.disable": true,
     },
 }
