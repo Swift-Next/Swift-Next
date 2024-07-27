@@ -287,6 +287,12 @@
 //                              ^ punctuation.section.block.begin.swift
 //                               ^ punctuation.section.block.end.swift
 
+
+
+
+
+// FIXME: Unsorted and complex failing tests
+
 // Currently it treats let inputNameField and viewModel as a struct variable including it in symbol list
   struct Some {
 //^^^^^^^^^^^^^ meta.struct.swift
