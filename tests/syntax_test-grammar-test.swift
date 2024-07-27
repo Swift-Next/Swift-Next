@@ -6,29 +6,45 @@
 ///         tests implemented by https://github.com/yaroslavyaroslav
 ///
 
-/******************************************************************************
- * Comment Tests
- *****************************************************************************/
+// MARK: Comment Tests
 
   // a comment
-//^^ comment.line.double-slash.swift punctuation.definition.comment.begin.swift
-  //^^^^^^^^^^ comment.line.double-slash.swift
+//^^^^^^^^^^^^ comment.line.double-slash.swift
+//^^ punctuation.definition.comment.begin.swift
+
+  /// a doc comment
+//^^^^^^^^^^^^^^^^^ comment.line.documentation.swift
+//^^^ punctuation.definition.comment.begin.swift
+
+  /**
+//^^^ punctuation.definition.comment.begin.swift
+//^^^^ comment.block.documentation.swift
+  * A block doctring comment
+//^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block.documentation.swift
+  `x = y`
+//^^^^^^^ comment.block.documentation.swift
+//^^^^^^^ markup.raw.inline.swift
+  */
+//^^ comment.block.documentation.swift punctuation.definition.comment.end.swift
+
 
   /* a block comment */noLongerAComment()
-//^^ punctuation.definition.comment.begin.swift
 //^^^^^^^^^^^^^^^^^^^^^ comment.block.swift
-                  // ^^ punctuation.definition.comment.end.swift
-                    // ^^^^^^^^^^^^^^^^ variable.function.swift
-                                    // ^ punctuation.section.parens.begin.swift
-                                     // ^ punctuation.section.parens.end.swift
+//^^ punctuation.definition.comment.begin.swift
+//  ^^^^^^^^^^^^^^^^^^^ punctuation.definition.comment.end.swift
+//                     ^^^^^^^^^^^^^^^^ variable.function.swift
+//                                     ^^ meta.function.parameters.swift
+//                                     ^ punctuation.section.parens.begin.swift
+//                                      ^ punctuation.section.parens.end.swift
 
   /*/ still just a block comment */noLongerAComment()
-//^^ punctuation.definition.comment.begin.swift
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block.swift
-                              // ^^ punctuation.definition.comment.end.swift
-                                // ^^^^^^^^^^^^^^^^ variable.function.swift
-                                                // ^ punctuation.section.parens.begin.swift
-                                                 // ^ punctuation.section.parens.end.swift
+//^^ punctuation.definition.comment.begin.swift
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ punctuation.definition.comment.end.swift
+//                                 ^^^^^^^^^^^^^^^^ variable.function.swift
+//                                                 ^^ meta.function.parameters.swift
+//                                                 ^ punctuation.section.parens.begin.swift
+//                                                  ^ punctuation.section.parens.end.swift
 
 
 // Currently it treats let inputNameField and viewModel as a struct variable including it in symbol list
