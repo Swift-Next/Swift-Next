@@ -74,7 +74,7 @@ variables:
           actor|associatedtype|async|class|convenience|deinit|distributed|dynamic|
           enum|extension|fileprivate|final|func|import|indirect|infix|init|
           internal|isolated|lazy|let|mutating|nonisolated|nonmutating|open|operator|
-          override|postfix|precedencegroup|prefix|private|protocol|public|
+          override|postfix|precedencegroup|prefix|private|protocol|public|package|
           required|static|struct|subscript|typealias|unowned|var|weak|
           # Manually selected words
           guard|if|switch|case
@@ -91,7 +91,7 @@ variables:
   dot_operator: (?![{{operator_character}}])[.][.{{operator_character}}]+
   operator_negative_lookahead: (?![.{{operator_character}}])
 
-  access_levels: '\b(?:(private)|(fileprivate)|(internal)|(public)|(open))\b'
+  access_levels: '\b(?:(private)|(fileprivate)|(internal)|(public)|(package)|(open))\b'
 
   generic_clause_chars: '{{identifier_character}}{{whitespaces}}<:&\.,\s`>'
   generic_clause_chars_call_site: '{{generic_clause_chars}}\?\!\(\)\[\]-'
@@ -909,10 +909,11 @@ contexts:
         2: storage.modifier.access-level.fileprivate.swift
         3: storage.modifier.access-level.internal.swift
         4: storage.modifier.access-level.public.swift
-        5: storage.modifier.access-level.open.swift
-        6: punctuation.section.parens.begin.swift
-        7: variable.parameter.setter-access-level.swift
-        8: punctuation.section.parens.end.swift
+        5: storage.modifier.access-level.package.swift
+        6: storage.modifier.access-level.open.swift
+        8: punctuation.section.parens.begin.swift
+        9: variable.parameter.setter-access-level.swift
+        10: punctuation.section.parens.end.swift
 
   modifier-mutation:
     - match: \b(?:(mutating)|(nonmutating))\b(?=\s|$)
