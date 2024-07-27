@@ -47,6 +47,134 @@
 //                                                  ^ punctuation.section.parens.end.swift
 
 
+// MARK: Classes Tests
+
+// MARK: Class Definition Tests
+
+  class SomeClass {}
+//^^^^^^^^^^^^^ meta.class.swift
+//^^^^^ keyword.declaration.class.swift
+//      ^^^^ entity.name.class.swift
+//           ^^ meta.block.swift
+//           ^ punctuation.section.block.begin.swift
+//            ^ punctuation.section.block.end.swift
+
+  public final class SomeClass {}
+//^^^^^^ storage.modifier.access-level.public.swift
+//       ^^^^^ storage.modifier.final.swift
+//             ^^^^^ keyword.declaration.class.swift
+//                   ^^^^ entity.name.class.swift
+//             ^^^^^^^^^^^^^ meta.class.swift
+//                        ^^ meta.block.swift
+//                        ^ punctuation.section.block.begin.swift
+//                         ^ punctuation.section.block.end.swift
+
+  final public class SomeClass {}
+//^^^^^ storage.modifier.final.swift
+//      ^^^^^^ storage.modifier.access-level.public.swift
+//             ^^^^^ keyword.declaration.class.swift
+//                   ^^^^ entity.name.class.swift
+//             ^^^^^^^^^^^^^ meta.class.swift
+//                        ^^ meta.block.swift
+//                        ^ punctuation.section.block.begin.swift
+//                         ^ punctuation.section.block.end.swift
+
+  final private class SomeClass {}
+//^^^^^ storage.modifier.final.swift
+//      ^^^^^^^ storage.modifier.access-level.private.swift
+//              ^^^^^^^^^^^^^ meta.class.swift
+//              ^^^^^ keyword.declaration.class.swift
+//                    ^^^^ entity.name.class.swift
+//                         ^^ meta.block.swift
+//                         ^ punctuation.section.block.begin.swift
+//                          ^ punctuation.section.block.end.swift
+  final fileprivate class SomeClass {}
+//^^^^^ storage.modifier.final.swift
+//      ^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
+//                  ^^^^^^^^^^^^^ meta.class.swift
+//                  ^^^^^ keyword.declaration.class.swift
+//                        ^^^^ entity.name.class.swift
+//                             ^^ meta.block.swift
+//                             ^ punctuation.section.block.begin.swift
+//                              ^ punctuation.section.block.end.swift
+  final internal class SomeClass {}
+//^^^^^ storage.modifier.final.swift
+//      ^^^^^^^^ storage.modifier.access-level.internal.swift
+//               ^^^^^^^^^^^^^ meta.class.swift
+//               ^^^^^ keyword.declaration.class.swift
+//                     ^^^^ entity.name.class.swift
+//                          ^^ meta.block.swift
+//                          ^ punctuation.section.block.begin.swift
+//                           ^ punctuation.section.block.end.swift
+  final package class SomeClass {}
+//^^^^^ storage.modifier.final.swift
+//      ^^^^^^^ storage.modifier.access-level.package.swift
+//              ^^^^^^^^^^^^^ meta.class.swift
+//              ^^^^^ keyword.declaration.class.swift
+//                    ^^^^ entity.name.class.swift
+//                         ^^ meta.block.swift
+//                         ^ punctuation.section.block.begin.swift
+//                          ^ punctuation.section.block.end.swift
+  open class SomeClass {}
+//^^^^ storage.modifier.access-level.open.swift
+//     ^^^^^^^^^^^^^ meta.class.swift
+//     ^^^^^ keyword.declaration.class.swift
+//           ^^^^ entity.name.class.swift
+//                ^^ meta.block.swift
+//                ^ punctuation.section.block.begin.swift
+//                 ^ punctuation.section.block.end.swift
+
+// MARK: Extensions Tests
+
+// MARK: Extensions Definition Tests
+
+  extension SomeClassExtension {}
+//^^^^^^^^^^^^^^^^^ meta.extension.swift
+//^^^^^^^^^ keyword.declaration.extension.swift
+//          ^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//               ^^ meta.block.swift
+//               ^ punctuation.section.block.begin.swift
+//                ^ punctuation.section.block.end.swift
+  private extension SomeClassExtension {}
+//^^^^^^^ storage.modifier.access-level.private.swift
+//        ^^^^^^^^^^^^^^^^^ meta.extension.swift
+//        ^^^^^^^^^ keyword.declaration.extension.swift
+//                  ^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                       ^^ meta.block.swift
+//                       ^ punctuation.section.block.begin.swift
+//                        ^ punctuation.section.block.end.swift
+  public extension SomeClassExtension {}
+//^^^^^^ storage.modifier.access-level.public.swift
+//       ^^^^^^^^^^^^^^^^^ meta.extension.swift
+//       ^^^^^^^^^ keyword.declaration.extension.swift
+//                 ^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                      ^^ meta.block.swift
+//                      ^ punctuation.section.block.begin.swift
+//                       ^ punctuation.section.block.end.swift
+  internal extension SomeClassExtension {}
+//^^^^^^^^ storage.modifier.access-level.internal.swift
+//         ^^^^^^^^^^^^^^^^^ meta.extension.swift
+//         ^^^^^^^^^ keyword.declaration.extension.swift
+//                   ^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                        ^^ meta.block.swift
+//                        ^ punctuation.section.block.begin.swift
+//                         ^ punctuation.section.block.end.swift
+  fileprivate extension SomeClassExtension {}
+//^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
+//            ^^^^^^^^^^^^^^^^^ meta.extension.swift
+//            ^^^^^^^^^ keyword.declaration.extension.swift
+//                      ^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                           ^^ meta.block.swift
+//                           ^ punctuation.section.block.begin.swift
+//                            ^ punctuation.section.block.end.swift
+  package extension SomeClassExtension {}
+//^^^^^^^ storage.modifier.access-level.package.swift
+//        ^^^^^^^^^^^^^^^^^ meta.extension.swift
+//        ^^^^^^^^^ keyword.declaration.extension.swift
+//                  ^^^^ keyword.symbol-list.swift entity.name.x.extension.swift support.class.swift
+//                       ^^ meta.block.swift
+//                       ^ punctuation.section.block.begin.swift
+//                        ^ punctuation.section.block.end.swift
 // Currently it treats let inputNameField and viewModel as a struct variable including it in symbol list
   struct Some {
 //^^^^^^^^^^^^^ meta.struct.swift
