@@ -5,7 +5,7 @@
 // MARK: Plain Protocol Definition
 
   protocol SomeProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //^^^^^^^^ keyword.declaration.protocol.swift
 //         ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                      ^^ meta.block.swift
@@ -15,8 +15,9 @@
 // MARK: Access-Level Protocol Definition
 
   public protocol SomeProtocol {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //       ^^^^^^^^ keyword.declaration.protocol.swift
 //                ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                             ^^ meta.block.swift
@@ -25,7 +26,7 @@
 
   package protocol SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //        ^^^^^^^^ keyword.declaration.protocol.swift
 //                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                              ^^ meta.block.swift
@@ -34,7 +35,7 @@
 
   internal protocol SomeProtocol {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //         ^^^^^^^^ keyword.declaration.protocol.swift
 //                  ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                               ^^ meta.block.swift
@@ -43,7 +44,7 @@
 
   fileprivate protocol SomeProtocol {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //            ^^^^^^^^ keyword.declaration.protocol.swift
 //                     ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                                  ^^ meta.block.swift
@@ -52,7 +53,7 @@
 
   private protocol SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //        ^^^^^^^^ keyword.declaration.protocol.swift
 //                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                              ^^ meta.block.swift
@@ -62,7 +63,7 @@
 // MARK: Protocol Definition With Another Protocol Conformance
 
   protocol SomeProtocol: SomeAnotherProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //^^^^^^^^ keyword.declaration.protocol.swift
 //         ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                     ^ punctuation.separator.annotation.conformance.swift
@@ -74,7 +75,7 @@
 // MARK: Protocol Definition With Multiple Protocol Conformance
 
   protocol SomeProtocol: SomeAnotherProtocol, SomeThirdProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //^^^^^^^^ keyword.declaration.protocol.swift
 //         ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                     ^ punctuation.separator.annotation.conformance.swift
@@ -89,7 +90,7 @@
 
   public protocol SomeProtocol: SomeAnotherProtocol, SomeThirdProtocol {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //       ^^^^^^^^ keyword.declaration.protocol.swift
 //                ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                            ^ punctuation.separator.annotation.conformance.swift
@@ -102,7 +103,7 @@
 
   package protocol SomeProtocol: SomeAnotherProtocol, SomeThirdProtocol {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //        ^^^^^^^^ keyword.declaration.protocol.swift
 //                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                             ^ punctuation.separator.annotation.conformance.swift
@@ -115,7 +116,7 @@
 
   internal protocol SomeProtocol: SomeAnotherProtocol, SomeThirdProtocol {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //         ^^^^^^^^ keyword.declaration.protocol.swift
 //                  ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                              ^ punctuation.separator.annotation.conformance.swift
@@ -128,7 +129,7 @@
 
   fileprivate protocol SomeProtocol: SomeAnotherProtocol, SomeThirdProtocol {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //            ^^^^^^^^ keyword.declaration.protocol.swift
 //                     ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                                 ^ punctuation.separator.annotation.conformance.swift
@@ -141,7 +142,7 @@
 
   private protocol SomeProtocol: SomeAnotherProtocol, SomeThirdProtocol {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.protocol.swift - meta.protocol meta.protocol
 //        ^^^^^^^^ keyword.declaration.protocol.swift
 //                 ^^^^^^^^^^^^ entity.name.protocol.swift - keyword
 //                             ^ punctuation.separator.annotation.conformance.swift

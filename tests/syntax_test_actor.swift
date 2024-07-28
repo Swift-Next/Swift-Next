@@ -7,7 +7,7 @@
 // MARK: Plain Actor Definition
 
   actor SomeActor {}
-//^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //^^^^^ keyword.declaration.actor.swift
 //      ^^^^^^^^^ entity.name.actor.swift - keyword
 //                ^^ meta.block.swift
@@ -18,7 +18,7 @@
 
   open actor SomeActor {}
 //^^^^ storage.modifier.access-level.open.swift
-//     ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//     ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //     ^^^^^ keyword.declaration.actor.swift
 //           ^^^^^^^^^ entity.name.actor.swift - keyword
 //                     ^^ meta.block.swift
@@ -27,7 +27,7 @@
 
   public actor SomeActor {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//       ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //       ^^^^^ keyword.declaration.actor.swift
 //             ^^^^^^^^^ entity.name.actor.swift - keyword
 //                       ^^ meta.block.swift
@@ -36,7 +36,7 @@
 
   package actor SomeActor {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//        ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //        ^^^^^ keyword.declaration.actor.swift
 //              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                        ^^ meta.block.swift
@@ -45,7 +45,7 @@
 
   internal actor SomeActor {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//         ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //         ^^^^^ keyword.declaration.actor.swift
 //               ^^^^^^^^^ entity.name.actor.swift - keyword
 //                         ^^ meta.block.swift
@@ -54,7 +54,7 @@
 
   fileprivate actor SomeActor {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//            ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //            ^^^^^ keyword.declaration.actor.swift
 //                  ^^^^^^^^^ entity.name.actor.swift - keyword
 //                            ^^ meta.block.swift
@@ -63,7 +63,7 @@
 
   private actor SomeActor {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//        ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //        ^^^^^ keyword.declaration.actor.swift
 //              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                        ^^ meta.block.swift
@@ -74,7 +74,7 @@
 
   open actor SomeActor {}
 //^^^^ storage.modifier.access-level.open.swift
-//     ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//     ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //     ^^^^^ keyword.declaration.actor.swift
 //           ^^^^^^^^^ entity.name.actor.swift - keyword
 //                     ^^ meta.block.swift
@@ -84,7 +84,7 @@
   public final actor SomeActor {}
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^ storage.modifier.final.swift
-//             ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//             ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //             ^^^^^ keyword.declaration.actor.swift
 //                   ^^^^^^^^^ entity.name.actor.swift - keyword
 //                             ^^ meta.block.swift
@@ -94,7 +94,7 @@
   final public actor SomeActor {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^ storage.modifier.access-level.public.swift
-//             ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//             ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //             ^^^^^ keyword.declaration.actor.swift
 //                   ^^^^^^^^^ entity.name.actor.swift - keyword
 //                             ^^ meta.block.swift
@@ -104,7 +104,7 @@
   final package actor SomeActor {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^ storage.modifier.access-level.package.swift
-//              ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//              ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //              ^^^^^ keyword.declaration.actor.swift
 //                    ^^^^^^^^^ entity.name.actor.swift - keyword
 //                              ^^ meta.block.swift
@@ -114,7 +114,7 @@
   final internal actor SomeActor {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^^ storage.modifier.access-level.internal.swift
-//               ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//               ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //               ^^^^^ keyword.declaration.actor.swift
 //                     ^^^^^^^^^ entity.name.actor.swift - keyword
 //                               ^^ meta.block.swift
@@ -124,7 +124,7 @@
   final fileprivate actor SomeActor {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//                  ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//                  ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //                  ^^^^^ keyword.declaration.actor.swift
 //                        ^^^^^^^^^ entity.name.actor.swift - keyword
 //                                  ^^ meta.block.swift
@@ -134,7 +134,7 @@
   final private actor SomeActor {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^ storage.modifier.access-level.private.swift
-//              ^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//              ^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //              ^^^^^ keyword.declaration.actor.swift
 //                    ^^^^^^^^^ entity.name.actor.swift - keyword
 //                              ^^ meta.block.swift
@@ -144,7 +144,7 @@
 // MARK: Actor Definition With Inheritance
 
   actor SomeActor: SomeSuperActor {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //^^^^^ keyword.declaration.actor.swift
 //      ^^^^^^^^^ entity.name.actor.swift - keyword
 //               ^ punctuation.separator.annotation.conformance.swift
@@ -156,7 +156,7 @@
 // MARK: Actor Definition With Inheritance & Protocols Conformance
 
   actor SomeActor: SomeSuperActor, SomeProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //^^^^^ keyword.declaration.actor.swift
 //      ^^^^^^^^^ entity.name.actor.swift - keyword
 //               ^ punctuation.separator.annotation.conformance.swift
@@ -171,7 +171,7 @@
 
   open actor SomeActor: SomeSuperActor, SomeProtocol {}
 //^^^^ storage.modifier.access-level.open.swift
-//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //     ^^^^^ keyword.declaration.actor.swift
 //           ^^^^^^^^^ entity.name.actor.swift - keyword
 //                    ^ punctuation.separator.annotation.conformance.swift
@@ -184,7 +184,7 @@
 
   public actor SomeActor: SomeSuperActor, SomeProtocol {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //       ^^^^^ keyword.declaration.actor.swift
 //             ^^^^^^^^^ entity.name.actor.swift - keyword
 //                      ^ punctuation.separator.annotation.conformance.swift
@@ -197,7 +197,7 @@
 
   package actor SomeActor: SomeSuperActor, SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //        ^^^^^ keyword.declaration.actor.swift
 //              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                       ^ punctuation.separator.annotation.conformance.swift
@@ -210,7 +210,7 @@
 
   internal actor SomeActor: SomeSuperActor, SomeProtocol {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //         ^^^^^ keyword.declaration.actor.swift
 //               ^^^^^^^^^ entity.name.actor.swift - keyword
 //                        ^ punctuation.separator.annotation.conformance.swift
@@ -223,7 +223,7 @@
 
   fileprivate actor SomeActor: SomeSuperActor, SomeProtocol {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //            ^^^^^ keyword.declaration.actor.swift
 //                  ^^^^^^^^^ entity.name.actor.swift - keyword
 //                           ^ punctuation.separator.annotation.conformance.swift
@@ -236,7 +236,7 @@
 
   private actor SomeActor: SomeSuperActor, SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.actor.swift - meta.actor meta.actor
 //        ^^^^^ keyword.declaration.actor.swift
 //              ^^^^^^^^^ entity.name.actor.swift - keyword
 //                       ^ punctuation.separator.annotation.conformance.swift

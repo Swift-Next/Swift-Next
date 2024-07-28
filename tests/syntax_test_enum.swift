@@ -5,7 +5,7 @@
 // MARK: Plain Enum Definition
 
   enum SomeEnum {}
-//^^^^^^^^^^^^^^^^ meta.enum.swift
+//^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //^^^^ keyword.declaration.enum.swift
 //     ^^^^^^^^ entity.name.enum.swift
 //              ^^ meta.block.swift
@@ -16,7 +16,7 @@
 
   public enum SomeEnum {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^ meta.enum.swift
+//       ^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //       ^^^^ keyword.declaration.enum.swift
 //            ^^^^^^^^ entity.name.enum.swift
 //                     ^^ meta.block.swift
@@ -25,7 +25,7 @@
 
   package enum SomeEnum {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^ meta.enum.swift
+//        ^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //        ^^^^ keyword.declaration.enum.swift
 //             ^^^^^^^^ entity.name.enum.swift
 //                      ^^ meta.block.swift
@@ -34,7 +34,7 @@
 
   internal enum SomeEnum {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^ meta.enum.swift
+//         ^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //         ^^^^ keyword.declaration.enum.swift
 //              ^^^^^^^^ entity.name.enum.swift
 //                       ^^ meta.block.swift
@@ -43,7 +43,7 @@
 
   fileprivate enum SomeEnum {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^ meta.enum.swift
+//            ^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //            ^^^^ keyword.declaration.enum.swift
 //                 ^^^^^^^^ entity.name.enum.swift
 //                          ^^ meta.block.swift
@@ -52,7 +52,7 @@
 
   private enum SomeEnum {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^ meta.enum.swift
+//        ^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //        ^^^^ keyword.declaration.enum.swift
 //             ^^^^^^^^ entity.name.enum.swift
 //                      ^^ meta.block.swift
@@ -62,7 +62,7 @@
 // MARK: Enum Definition With Raw Type Definition
 
   enum SomeEnum: String {}
-//^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //^^^^ keyword.declaration.enum.swift
 //     ^^^^^^^^ entity.name.enum.swift
 //             ^ punctuation.separator.annotation.conformance.swift
@@ -74,7 +74,7 @@
 // MARK: Enum Definition With Raw Type & Protocol Conformance
 
   enum SomeEnum: String, SomeProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //^^^^ keyword.declaration.enum.swift
 //     ^^^^^^^^ entity.name.enum.swift
 //             ^ punctuation.separator.annotation.conformance.swift
@@ -89,7 +89,7 @@
 
   public enum SomeEnum: String, SomeProtocol {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //       ^^^^ keyword.declaration.enum.swift
 //            ^^^^^^^^ entity.name.enum.swift
 //                    ^ punctuation.separator.annotation.conformance.swift
@@ -102,7 +102,7 @@
 
   package enum SomeEnum: String, SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //        ^^^^ keyword.declaration.enum.swift
 //             ^^^^^^^^ entity.name.enum.swift
 //                     ^ punctuation.separator.annotation.conformance.swift
@@ -115,7 +115,7 @@
 
   internal enum SomeEnum: String, SomeProtocol {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //         ^^^^ keyword.declaration.enum.swift
 //              ^^^^^^^^ entity.name.enum.swift
 //                      ^ punctuation.separator.annotation.conformance.swift
@@ -128,7 +128,7 @@
 
   fileprivate enum SomeEnum: String, SomeProtocol {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //            ^^^^ keyword.declaration.enum.swift
 //                 ^^^^^^^^ entity.name.enum.swift
 //                         ^ punctuation.separator.annotation.conformance.swift
@@ -141,7 +141,7 @@
 
   private enum SomeEnum: String, SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.enum.swift - meta.class meta.class
 //        ^^^^ keyword.declaration.enum.swift
 //             ^^^^^^^^ entity.name.enum.swift
 //                     ^ punctuation.separator.annotation.conformance.swift

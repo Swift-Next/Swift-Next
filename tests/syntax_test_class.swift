@@ -5,7 +5,7 @@
 // MARK: Plain Class Definition
 
   class SomeClass {}
-//^^^^^^^^^^^^^^^^^^ meta.class.swift
+//^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //^^^^^ keyword.declaration.class.swift
 //      ^^^^^^^^^ entity.name.class.swift
 //                ^^ meta.block.swift
@@ -16,7 +16,7 @@
 
   open class SomeClass {}
 //^^^^ storage.modifier.access-level.open.swift
-//     ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//     ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //     ^^^^^ keyword.declaration.class.swift
 //           ^^^^^^^^^ entity.name.class.swift
 //                     ^^ meta.block.swift
@@ -25,7 +25,7 @@
 
   public class SomeClass {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//       ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //       ^^^^^ keyword.declaration.class.swift
 //             ^^^^^^^^^ entity.name.class.swift
 //                       ^^ meta.block.swift
@@ -34,7 +34,7 @@
 
   package class SomeClass {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//        ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //        ^^^^^ keyword.declaration.class.swift
 //              ^^^^^^^^^ entity.name.class.swift
 //                        ^^ meta.block.swift
@@ -43,7 +43,7 @@
 
   internal class SomeClass {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//         ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //         ^^^^^ keyword.declaration.class.swift
 //               ^^^^^^^^^ entity.name.class.swift
 //                         ^^ meta.block.swift
@@ -52,7 +52,7 @@
 
   fileprivate class SomeClass {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//            ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //            ^^^^^ keyword.declaration.class.swift
 //                  ^^^^^^^^^ entity.name.class.swift
 //                            ^^ meta.block.swift
@@ -61,7 +61,7 @@
 
   private class SomeClass {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//        ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //        ^^^^^ keyword.declaration.class.swift
 //              ^^^^^^^^^ entity.name.class.swift
 //                        ^^ meta.block.swift
@@ -73,7 +73,7 @@
   /// `open` can't be combined with `final`
   open class SomeClass {}
 //^^^^ storage.modifier.access-level.open.swift
-//     ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//     ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //     ^^^^^ keyword.declaration.class.swift
 //           ^^^^^^^^^ entity.name.class.swift
 //                     ^^ meta.block.swift
@@ -83,7 +83,7 @@
   public final class SomeClass {}
 //^^^^^^ storage.modifier.access-level.public.swift
 //       ^^^^^ storage.modifier.final.swift
-//             ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//             ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //             ^^^^^ keyword.declaration.class.swift
 //                   ^^^^^^^^^ entity.name.class.swift
 //                             ^^ meta.block.swift
@@ -94,7 +94,7 @@
   final public class SomeClass {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^ storage.modifier.access-level.public.swift
-//             ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//             ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //             ^^^^^ keyword.declaration.class.swift
 //                   ^^^^^^^^^ entity.name.class.swift
 //                             ^^ meta.block.swift
@@ -104,7 +104,7 @@
   final package class SomeClass {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^ storage.modifier.access-level.package.swift
-//              ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//              ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //              ^^^^^ keyword.declaration.class.swift
 //                    ^^^^^^^^^ entity.name.class.swift
 //                              ^^ meta.block.swift
@@ -114,7 +114,7 @@
   final internal class SomeClass {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^^ storage.modifier.access-level.internal.swift
-//               ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//               ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //               ^^^^^ keyword.declaration.class.swift
 //                     ^^^^^^^^^ entity.name.class.swift
 //                               ^^ meta.block.swift
@@ -124,7 +124,7 @@
   final fileprivate class SomeClass {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//                  ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//                  ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //                  ^^^^^ keyword.declaration.class.swift
 //                        ^^^^^^^^^ entity.name.class.swift
 //                                  ^^ meta.block.swift
@@ -134,7 +134,7 @@
   final private class SomeClass {}
 //^^^^^ storage.modifier.final.swift
 //      ^^^^^^^ storage.modifier.access-level.private.swift
-//              ^^^^^^^^^^^^^^^^^^ meta.class.swift
+//              ^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //              ^^^^^ keyword.declaration.class.swift
 //                    ^^^^^^^^^ entity.name.class.swift
 //                              ^^ meta.block.swift
@@ -144,7 +144,7 @@
 // MARK: Class Definition With Inheritance
 
   class SomeClass: SomeSuperClass {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //^^^^^ keyword.declaration.class.swift
 //      ^^^^^^^^^ entity.name.class.swift
 //               ^ punctuation.separator.annotation.conformance.swift
@@ -156,7 +156,7 @@
 // MARK: Class Definition With Inheritance & Protocols Conformance
 
   class SomeClass: SomeSuperClass, SomeProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //^^^^^ keyword.declaration.class.swift
 //      ^^^^^^^^^ entity.name.class.swift
 //               ^ punctuation.separator.annotation.conformance.swift
@@ -171,7 +171,7 @@
 
   open class SomeClass: SomeSuperClass, SomeProtocol {}
 //^^^^ storage.modifier.access-level.open.swift
-//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //     ^^^^^ keyword.declaration.class.swift
 //           ^^^^^^^^^ entity.name.class.swift
 //                    ^ punctuation.separator.annotation.conformance.swift
@@ -184,7 +184,7 @@
 
   public class SomeClass: SomeSuperClass, SomeProtocol {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //       ^^^^^ keyword.declaration.class.swift
 //             ^^^^^^^^^ entity.name.class.swift
 //                      ^ punctuation.separator.annotation.conformance.swift
@@ -197,7 +197,7 @@
 
   package class SomeClass: SomeSuperClass, SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //        ^^^^^ keyword.declaration.class.swift
 //              ^^^^^^^^^ entity.name.class.swift
 //                       ^ punctuation.separator.annotation.conformance.swift
@@ -210,7 +210,7 @@
 
   internal class SomeClass: SomeSuperClass, SomeProtocol {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //         ^^^^^ keyword.declaration.class.swift
 //               ^^^^^^^^^ entity.name.class.swift
 //                        ^ punctuation.separator.annotation.conformance.swift
@@ -223,7 +223,7 @@
 
   fileprivate class SomeClass: SomeSuperClass, SomeProtocol {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //            ^^^^^ keyword.declaration.class.swift
 //                  ^^^^^^^^^ entity.name.class.swift
 //                           ^ punctuation.separator.annotation.conformance.swift
@@ -236,7 +236,7 @@
 
   private class SomeClass: SomeSuperClass, SomeProtocol {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.swift - meta.class meta.class
 //        ^^^^^ keyword.declaration.class.swift
 //              ^^^^^^^^^ entity.name.class.swift
 //                       ^ punctuation.separator.annotation.conformance.swift

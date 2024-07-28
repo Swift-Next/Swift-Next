@@ -9,7 +9,7 @@
 // MARK: Plain Extension Definition
 
   extension SomeClassExtension {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //^^^^^^^^^ keyword.declaration.extension.swift
 //          ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                             ^^ meta.block.swift
@@ -20,7 +20,7 @@
 
   public extension SomeClassExtension {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //       ^^^^^^^^^ keyword.declaration.extension.swift
 //                 ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                    ^^ meta.block.swift
@@ -29,7 +29,7 @@
 
   package extension SomeClassExtension {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //        ^^^^^^^^^ keyword.declaration.extension.swift
 //                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                     ^^ meta.block.swift
@@ -38,7 +38,7 @@
 
   internal extension SomeClassExtension {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //         ^^^^^^^^^ keyword.declaration.extension.swift
 //                   ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                      ^^ meta.block.swift
@@ -47,7 +47,7 @@
 
   fileprivate extension SomeClassExtension {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //            ^^^^^^^^^ keyword.declaration.extension.swift
 //                      ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                         ^^ meta.block.swift
@@ -56,18 +56,17 @@
 
   private extension SomeClassExtension {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //        ^^^^^^^^^ keyword.declaration.extension.swift
 //                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                     ^^ meta.block.swift
 //                                     ^ punctuation.section.block.begin.swift
 //                                      ^ punctuation.section.block.end.swift
 
-
 // MARK: Extension Definition With Protocol Conformance
 
   extension SomeClassExtension: SomeProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //^^^^^^^^^ keyword.declaration.extension.swift
 //          ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                            ^ punctuation.separator.annotation.conformance.swift
@@ -79,7 +78,7 @@
 // MARK: Extension Definition With Multiple Protocols Conformance
 
   extension SomeClassExtension: SomeProtocol, SomeAnotherProtocol {}
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //^^^^^^^^^ keyword.declaration.extension.swift
 //          ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                            ^ punctuation.separator.annotation.conformance.swift
@@ -94,7 +93,7 @@
 
   public extension SomeClassExtension: SomeProtocol, SomeAnotherProtocol {}
 //^^^^^^ storage.modifier.access-level.public.swift
-//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //       ^^^^^^^^^ keyword.declaration.extension.swift
 //                 ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                   ^ punctuation.separator.annotation.conformance.swift
@@ -107,7 +106,7 @@
 
   package extension SomeClassExtension: SomeProtocol, SomeAnotherProtocol {}
 //^^^^^^^ storage.modifier.access-level.package.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //        ^^^^^^^^^ keyword.declaration.extension.swift
 //                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                    ^ punctuation.separator.annotation.conformance.swift
@@ -120,7 +119,7 @@
 
   internal extension SomeClassExtension: SomeProtocol, SomeAnotherProtocol {}
 //^^^^^^^^ storage.modifier.access-level.internal.swift
-//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //         ^^^^^^^^^ keyword.declaration.extension.swift
 //                   ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                     ^ punctuation.separator.annotation.conformance.swift
@@ -133,7 +132,7 @@
 
   fileprivate extension SomeClassExtension: SomeProtocol, SomeAnotherProtocol {}
 //^^^^^^^^^^^ storage.modifier.access-level.fileprivate.swift
-//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //            ^^^^^^^^^ keyword.declaration.extension.swift
 //                      ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                        ^ punctuation.separator.annotation.conformance.swift
@@ -146,7 +145,7 @@
 
   private extension SomeClassExtension: SomeProtocol, SomeAnotherProtocol {}
 //^^^^^^^ storage.modifier.access-level.private.swift
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.extension.swift - meta.extension meta.extension
 //        ^^^^^^^^^ keyword.declaration.extension.swift
 //                  ^^^^^^^^^^^^^^^^^^ entity.name.x.extension.swift - (support | keyword)
 //                                    ^ punctuation.separator.annotation.conformance.swift
