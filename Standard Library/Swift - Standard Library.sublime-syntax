@@ -1,12 +1,47 @@
 %YAML 1.2
 ---
-# [ TODO: Goto Symbol uses the name field of this file somehow ] #
-# name: Swift Standard Library Symbols
-name: Swift
-scope: source.swift
+name: Swift Standard Library Symbols
+scope: source.swift.standard-library
 hidden: true
 contexts:
   main:
+    # Public additions since Swift 5.6. Keep these readable for future updates.
+    - match: |-
+        (?x:\b(?:
+            Sendable | SendableMetatype | Copyable | Escapable | BitwiseCopyable | Clock
+          | InstantProtocol | RegexComponent | DistributedActor | DistributedActorSystem
+          | SerialExecutor | TaskExecutor | Executor | Iterable | BorrowingIteratorProtocol
+          | IteratorProtocol | AsyncSequence | AsyncIteratorProtocol
+        )\b(?!`))
+      scope: support.type.protocol.standard-library.swift
+    - match: |-
+        (?x:\b(?:
+            Task | TaskGroup | ThrowingTaskGroup | DiscardingTaskGroup | ThrowingDiscardingTaskGroup
+          | AsyncStream | AsyncThrowingStream | AsyncMapSequence | AsyncFilterSequence
+          | AsyncCompactMapSequence | AsyncFlatMapSequence | AsyncPrefixSequence
+          | AsyncDropFirstSequence | AsyncDropWhileSequence | AsyncThrowingMapSequence
+          | AsyncThrowingFilterSequence | AsyncThrowingCompactMapSequence | AsyncThrowingFlatMapSequence
+          | AsyncThrowingPrefixWhileSequence | AsyncThrowingDropWhileSequence | Duration
+          | ContinuousClock | SuspendingClock | Regex | RegexRepetitionBehavior | RegexSemanticLevel
+          | AnyRegexOutput | InlineArray | Span | MutableSpan | RawSpan | MutableRawSpan | OutputSpan
+          | OutputRawSpan | UniqueArray | UniqueBox | Ref | MutableRef | Atomic | AtomicLazyReference
+          | Mutex | WordPair
+        )\b(?!`))
+      scope: support.type.struct.standard-library.swift
+    - match: |-
+        (?x:\b(?:
+            Synchronization | Observation | Testing | Distributed | RegexBuilder | _StringProcessing
+        )\b(?!`))
+      scope: support.module.system.swift
+    - match: |-
+        (?x:\b(?:
+            withTaskGroup | withThrowingTaskGroup | withDiscardingTaskGroup
+          | withThrowingDiscardingTaskGroup | withTaskCancellationHandler | withTaskCancellationShield
+          | withCheckedContinuation | withCheckedThrowingContinuation | withUnsafeContinuation
+          | withUnsafeThrowingContinuation | withUnsafeCurrentTask | withObservationTracking
+          | withTemporaryAllocation
+        )\b(?=\s*(?:\(|\{)))
+      scope: support.function.standard-library.swift
     # [ Module Name ] #
 
     - match: \b(UniformTypeIdentifiers|(Extension|Core)Foundation|_(System_Foundation|Concurrency)|SwiftOnoneSupport|(NearbyIntera|DataDete)ction|(NaturalLanguag|A(ppleArchiv|ccelerat)|MLComput|CoreImag)e|(((C(ryptoToken|loud|all)|G(ameplay|L)|M(etric|ap)|S((prit|cen)e|hazam)|Pass|IO)|(Metal|App))|Web)Kit|(Virtualiz|CoreLoc)ation|(S(afariService|oundAnalysi)|Co(reGraphic|ntact)|Intent|Photo|o)s|FileProvider|ExtensionKit|AVFoundation|Core(M(ediaIO|L)|Audio|Data)|Qu(ickLookUI|artzCore)|(Compres|Vi)sion|O(bjectiveC|penCL|SLog)|Foundation|CoreMedia|Dispatch|CoreMIDI|ModelIO|Network|System|Speech|Darwin|Metal|Swift|simd|XPC)\b

@@ -1,39 +1,58 @@
 {
     "target": "exec",
     "selector": "source.swift",
-    "file_regex": "^(?=/?)([^:]+):(\\d+):(\\d+): (.*)",
-    "keyfile": "Package.swift",
+    "file_regex": "^(.+?):(\\d+):(\\d+): (.*)",
     "env": {
-        "XPC_FLAGS": "0x0",
-        "cwd": "$folder",
+        "XPC_FLAGS": "0x0"
     },
-    "cancel": {
-        "kill": true,
-        "kill_previous": true
-    },
-    "working_dir": "$folder",
-    "shell_cmd": "swift $file",
-
+    "working_dir": "$file_path",
+    "cmd": [
+        "swift",
+        "$file"
+    ],
     "variants": [
         {
             "name": "Package: Build",
-            "shell_cmd": "swift build"
+            "cmd": [
+                "swift",
+                "build"
+            ],
+            "working_dir": "$folder"
         },
         {
             "name": "Package: Test",
-            "shell_cmd": "swift test"
+            "cmd": [
+                "swift",
+                "test"
+            ],
+            "working_dir": "$folder"
         },
         {
             "name": "Package: Resolve",
-            "shell_cmd": "swift package resolve"
+            "cmd": [
+                "swift",
+                "package",
+                "resolve"
+            ],
+            "working_dir": "$folder"
         },
         {
             "name": "Package: Update",
-            "shell_cmd": "swift package update"
+            "cmd": [
+                "swift",
+                "package",
+                "update"
+            ],
+            "working_dir": "$folder"
         },
         {
             "name": "Package: Clean",
-            "shell_cmd": "swift package clean"
-        },
+            "cmd": [
+                "swift",
+                "package",
+                "clean"
+            ],
+            "working_dir": "$folder"
+        }
     ]
 }
