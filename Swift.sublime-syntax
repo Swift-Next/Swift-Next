@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 #
-# This file is initially made based on and tested with Swift 5.6.
+# Originally based on Swift 5.6; extended for Swift 5.7 through Swift 6.4.
 #
 name: Swift
 scope: source.swift
@@ -17,7 +17,7 @@ variables:
   # https://docs.swift.org/swift-book/ReferenceManual/zzSummaryOfTheGrammar.html
   # [ Whitespace ] #
   # whitespace_item: ([\x00\x0B\x0C])
-  line_break: (?:\x0D\x0A?|\x0A) # Line Feed (x0A), Carriage Return (x0D)
+  line_break: '(?:\r\n?|\n)' # Line Feed (x0A), Carriage Return (x0D)
   inline_space: (?:[\x09\x20]) # Space (x20), Horizontal Tab (x09)
   whitespaces: '\x00\x0B\x0C\x0A\x09\x20'
 
@@ -87,13 +87,13 @@ variables:
   non_reserved_identifier: (?:(?!{{reserved_word}}){{identifier}})
   identifier_lookahead: (?=\s+?{{identifier}})
 
-  operator: '[{{operator_head}}](?!/)(?:([{{operator_character}}]*)?([.])?)*'
+  operator: '[{{operator_head}}](?!/)(?:([{{operator_character}}])|([.]))*'
   dot_operator: (?![{{operator_character}}])[.][.{{operator_character}}]+
   operator_negative_lookahead: (?![.{{operator_character}}])
 
   access_levels: '\b(?:(private)|(fileprivate)|(internal)|(public)|(open))\b'
 
-  generic_clause_chars: '{{identifier_character}}{{whitespaces}}<:&\.,\s`>'
+  generic_clause_chars: '{{identifier_character}}{{whitespaces}}<:&~\.,\s`>'
   generic_clause_chars_call_site: '{{generic_clause_chars}}\?\!\(\)\[\]-'
 
 #
@@ -137,6 +137,7 @@ contexts:
     - include: statements-scope-any
 
   statements-scope-file:
+    - include: declaration-macro
     - include: declaration-import
     - include: declaration-protocol
     - include: declaration-extension
@@ -169,6 +170,8 @@ contexts:
     - include: modifier-for-parameter
 
   statements-scope-any:
+    - include: modern-modifiers
+    - include: modern-operators
     - include: types
     - include: punctuations
     - include: literals
@@ -195,6 +198,7 @@ contexts:
     - include: compiler-availability
     - include: compiler-directive-clause
     - include: compiler-literals
+    - include: macro-expansion
     # Attribute
     - include: attribute-builtins
     - include: attribute-custom
@@ -320,6 +324,8 @@ contexts:
   # ':' is not generically consumed here to distinguish
   # type-annotation, conformance, key-value, ternary-conditional and others.
   punctuations:
+    - match: '::'
+      scope: punctuation.accessor.module.swift
     - match: \.{{operator_negative_lookahead}}
       scope: punctuation.accessor.dot.swift
     - match: ','
@@ -334,6 +340,7 @@ contexts:
   ### [ Literals ] ######################################################################
 
   literals:
+    - include: regex-literal
     - include: floating-point-literal
     - include: integer-literal
     - include: extended-string-literal
@@ -414,7 +421,7 @@ contexts:
       push:
         - meta_include_prototype: false
         - meta_scope: meta.string.swift string.quoted.double.block.swift
-        - match: ([^{{inline_space}}]*)(""")
+        - match: ([^\t ]*)(""")
           captures:
             1: invalid.illegal.closing-delimiter-must-begin-on-a-new-line.swift
             2: punctuation.definition.string.end.swift
@@ -462,74 +469,109 @@ contexts:
     # interpolated-text-item
     - match: \\\(
       scope: punctuation.section.interpolation.begin.swift
-      push:
-        - clear_scopes: 1
-        - meta_scope: meta.interpolation.swift
-        - include: statements-scope-any
-        - match: \)
-          scope: punctuation.section.interpolation.end.swift
-          pop: 1
+      push: string-interpolation
 
+  # Dynamic delimiters use embed/escape, whose opener backreferences are
+  # explicitly supported by Sublime's syntax-definition documentation.
   extended-string-literal:
-    # multiline extended-string-literal
-    - match: (\#+)(""")(.*?(?="""|$))
+    - match: '(?=#+""")'
+      push: extended-multiline-string
+    - match: '(?=#+")'
+      push: extended-string
+
+  extended-string-content:
+    - meta_include_prototype: false
+
+  # A single popping end rule retains the opener's hash capture while
+  # interpolation is parsed on top of it. This is the same end-reference
+  # mechanism used by Sublime's bundled Rust raw-string syntax. Unlike an
+  # embed escape, it cannot interrupt nested Swift strings or expressions.
+  extended-string-resume:
+    - meta_include_prototype: false
+    - match: '(?=(?:"|\\)\1(?!#)|\r?\n)'
+      pop: true
+
+  extended-multiline-string-resume:
+    - meta_include_prototype: false
+    - match: '(?=(?:"""|\\)\1(?!#))'
+      pop: true
+
+  extended-string:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.swift meta.string.raw.swift string.quoted.double.swift
+    - match: '(#+)(")'
+      captures:
+        1: punctuation.definition.annotation.begin.swift
+        2: punctuation.definition.string.begin.swift
+      embed: extended-string-content
+      escape: '(?=(?:"|\\)\1(?!#)|\r?\n)'
+    - match: '(")(#+)'
+      captures:
+        1: punctuation.definition.string.end.swift
+        2: punctuation.definition.annotation.end.swift
+      pop: 1
+    - match: '\\(#+)[0\\tnr"\x27]'
+      scope: constant.character.escape.swift
+      embed: extended-string-content
+      escape: '(?=(?:"|\\)\1(?!#)|\r?\n)'
+    - match: '\\(#+)u\{([0-9a-fA-F]{1,8})\}'
+      scope: constant.character.escape.unicode.swift
+      embed: extended-string-content
+      escape: '(?=(?:"|\\)\1(?!#)|\r?\n)'
+    - match: '\\(#+)\('
+      scope: punctuation.section.interpolation.begin.swift
+      push: [extended-string-resume, string-interpolation]
+    - match: '\r?\n'
+      scope: invalid.illegal.unterminated-string-literal.swift
+      pop: 1
+    - match: '\\(#+).'
+      scope: invalid.illegal.invalid-escape-sequence.swift
+      embed: extended-string-content
+      escape: '(?=(?:"|\\)\1(?!#)|\r?\n)'
+
+  extended-multiline-string:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.swift meta.string.raw.swift string.quoted.double.block.swift
+    - match: '(#+)(""")(.*?(?="""|$))'
       captures:
         1: punctuation.definition.annotation.begin.swift
         2: punctuation.definition.string.begin.swift
         3: invalid.illegal.content-must-begin-on-a-new-line.swift
-      push:
-        - meta_include_prototype: false
-        - meta_scope: meta.string.swift string.quoted.double.block.swift
-        - match: ([^{{inline_space}}]*)(""")(#+)
-          captures:
-            1: invalid.illegal.closing-delimiter-must-begin-on-a-new-line.swift
-            2: punctuation.definition.string.end.swift
-            3: punctuation.definition.annotation.end.swift
-          pop: 1
-        - include: extended-string-literal-content
-        - match: '\\{{inline_space}}*{{line_break}}'
-          scope: punctuation.separator.continuation.line.swift
-        - match: (?=[^\s]+?\s*\\#\s*[^0\\tnru"'(\s]+?)(?!\s*$)
-          push:
-            - match: \\#
-              scope: invalid.illegal.invalid-escape-sequence.swift
-              pop: 1
-    # extended-string-literal
-    - match: (#+)(")
+      embed: extended-string-content
+      escape: '(?=(?:"""|\\)\1(?!#))'
+    - match: '([^\t ]*)(""")(#+)'
       captures:
-        1: punctuation.definition.annotation.begin.swift
-        2: punctuation.definition.string.begin.swift
-      push:
-        - meta_scope: meta.string.swift string.quoted.double.swift
-        - match: (")(#+)
-          captures:
-            1: punctuation.definition.string.end.swift
-            2: punctuation.definition.annotation.end.swift
-          pop: 1
-        - match: '{{line_break}}'
-          scope: invalid.illegal.unterminated-string-literal.swift
-          pop: 1
-        - include: extended-string-literal-content
-
-  extended-string-literal-content:
-    # escaped-character
-    - match: \\#+[0\\tnr"']
+        1: invalid.illegal.closing-delimiter-must-begin-on-a-new-line.swift
+        2: punctuation.definition.string.end.swift
+        3: punctuation.definition.annotation.end.swift
+      pop: 1
+    - match: '\\(#+)[0\\tnr"\x27]'
       scope: constant.character.escape.swift
-    # unicode-scalar-digits
-    - match: \\#+u\{([0-9a-fA-F]{1,8})\}
+      embed: extended-string-content
+      escape: '(?=(?:"""|\\)\1(?!#))'
+    - match: '\\(#+)u\{([0-9a-fA-F]{1,8})\}'
       scope: constant.character.escape.unicode.swift
-      captures:
-        1: constant.numeric.value.swift
-    # interpolated-text-item
-    - match: \\#+\(
+      embed: extended-string-content
+      escape: '(?=(?:"""|\\)\1(?!#))'
+    - match: '\\(#+)\('
       scope: punctuation.section.interpolation.begin.swift
-      push:
-        - clear_scopes: 1
-        - meta_scope: meta.interpolation.swift
-        - include: statements-scope-any
-        - match: \)
-          scope: punctuation.section.interpolation.end.swift
-          pop: 1
+      push: [extended-multiline-string-resume, string-interpolation]
+    - match: '\\(#+)[\t ]*\r?\n'
+      scope: punctuation.separator.continuation.line.swift
+      embed: extended-string-content
+      escape: '(?=(?:"""|\\)\1(?!#))'
+    - match: '\\(#+).'
+      scope: invalid.illegal.invalid-escape-sequence.swift
+      embed: extended-string-content
+      escape: '(?=(?:"""|\\)\1(?!#))'
+
+  string-interpolation:
+    - clear_scopes: 1
+    - meta_scope: meta.interpolation.swift
+    - match: '\)'
+      scope: punctuation.section.interpolation.end.swift
+      pop: 1
+    - include: statements-scope-any
 
   boolean-literal:
     - match: \b(true|false)\b
@@ -838,6 +880,25 @@ contexts:
 
   # Keywords used in declarations
   keyword-declarations:
+    - match: '\b(throws)\s*(\()'
+      captures:
+        1: keyword.declaration.throws.swift
+        2: punctuation.section.parens.begin.swift
+      push:
+        - meta_scope: meta.throws.swift
+        - match: '\)'
+          scope: punctuation.section.parens.end.swift
+          pop: 1
+        - include: modifier-types
+        - include: statements-scope-any
+    - match: '\bborrow\b(?=\s*(?:\{|\}|mutate\b))'
+      scope: keyword.declaration.borrow.swift
+    - match: '\bmutate\b(?=\s*(?:\{|\}))'
+      scope: keyword.declaration.mutate.swift
+    - match: '\byielding\b(?=\s+(?:borrow|mutate)\b)'
+      scope: storage.modifier.yielding.swift
+    - match: '\byield\b(?=\s+[^=(])'
+      scope: keyword.control.flow.yield.swift
     - match: \bthrows\b
       scope: keyword.declaration.throws.swift
     - match: \brethrows\b
@@ -846,15 +907,15 @@ contexts:
       scope: keyword.declaration.async.swift
 
     # getter-setter
-    - match: \bget\b
+    - match: \bget\b(?!\s*\()
       scope: keyword.declaration.get.swift
-    - match: \bset\b
+    - match: '\bset\b(?:(?=\s*\(\s*{{identifier}}\s*\)\s*\{)|(?!\s*\())'
       scope: keyword.declaration.set.swift
 
     # willSet-didSet
-    - match: \bwillSet\b
+    - match: '\bwillSet\b(?:(?=\s*\(\s*{{identifier}}\s*\)\s*\{)|(?!\s*\())'
       scope: keyword.declaration.willSet.swift
-    - match: \bdidSet\b
+    - match: '\bdidSet\b(?:(?=\s*\(\s*{{identifier}}\s*\)\s*\{)|(?!\s*\())'
       scope: keyword.declaration.didSet.swift
 
     # enumeration
@@ -898,6 +959,14 @@ contexts:
         2: storage.modifier.static.swift
 
   modifier-access-level:
+    - match: '\b(package)(\()(set)(\))(?=\s)'
+      captures:
+        1: storage.modifier.access-level.package.swift
+        2: punctuation.section.parens.begin.swift
+        3: variable.parameter.setter-access-level.swift
+        4: punctuation.section.parens.end.swift
+    - match: '\bpackage\b(?=\s+(?:(?:final|static|nonisolated)\s+)*(?:import|let|var|func|macro|struct|class|enum|actor|protocol|typealias|init|subscript)\b)'
+      scope: storage.modifier.access-level.package.swift
     - match: |-
         (?x:
           \b(?:{{access_levels}})\b
@@ -921,6 +990,12 @@ contexts:
         2: storage.modifier.mutation.nonmutating.swift
 
   modifier-actor-isolation:
+    - match: '\b(nonisolated)\s*(\()\s*(unsafe|nonsending)\s*(\))'
+      captures:
+        1: storage.modifier.actor-isolation.nonisolated.swift
+        2: punctuation.section.parens.begin.swift
+        3: constant.language.actor-isolation.swift
+        4: punctuation.section.parens.end.swift
     - match: \b(nonisolated)\b(?=\s|$)
       captures:
         1: storage.modifier.actor-isolation.nonisolated.swift
@@ -943,12 +1018,12 @@ contexts:
 
   modifier-types:
     # opaque-type
-    - match: (?:\s|^)(some)(?=\s)
+    - match: '(?<![.`])\b(some)\b(?=\s+{{identifier}})'
       captures:
         1: storage.modifier.opaque.swift
 
     # existential-type
-    - match: (?:\s|^)(any)(?=\s)
+    - match: '(?<![.`])\b(any)\b(?=\s+{{identifier}})'
       captures:
         1: storage.modifier.existential.swift
 
@@ -960,6 +1035,8 @@ contexts:
         3: storage.modifier.operator.infix.swift
 
   modifier-for-parameter:
+    - include: modern-modifiers
+    - include: modern-operators
     # in-out-expression
     - match: |-
         (?x:
@@ -1025,7 +1102,7 @@ contexts:
     - match: ':'
       scope: punctuation.separator.annotation.type-annotation.swift
     # variadic parameter
-    - match: (\.{3})(?=\s*[{{line_break}},)])
+    - match: (\.{3})(?=\s*[\r\n,)])
       captures:
         1: keyword.operator.variadic.swift
     # bitwise-operator
@@ -1143,6 +1220,8 @@ contexts:
 
   # Common trailing expressions of a declaration
   declaration-trailing-signature:
+    - include: modern-modifiers
+    - include: modern-operators
     - match: (?={)
       pop: 1
     - match: (:)
@@ -1596,6 +1675,11 @@ contexts:
         (?x:
           (@)\b(
               MainActor
+            | attached | freestanding | retroactive
+            | concurrent | isolated | escapable | lifetime
+            | c | implementation | specialize | export | diagnose
+            | safe | unsafe | const | eagerMove
+            | execution | storageRestrictions | abi
             | unknown
 
             | GKInspectable
@@ -1647,6 +1731,7 @@ contexts:
       captures:
         1: meta.annotation.swift punctuation.definition.annotation.swift
         2: meta.annotation.identifier.swift support.function.annotation.swift
+      push: attribute-arguments
 
     - match: (@)\s*\b(inline)\b\s*(\()
       captures:
@@ -1658,7 +1743,7 @@ contexts:
         - match: \)
           scope: punctuation.section.parens.end.swift
           pop: 1
-        - match: '\b(?:__always|never)\b'
+        - match: '\b(?:always|__always|never)\b'
           scope: constant.language.attribute-option.swift
         - include: else-pop
 
@@ -1756,6 +1841,9 @@ contexts:
 
   generic-parameter-clause-call-body:
     - meta_scope: meta.generic.swift
+    - include: modern-modifiers
+    - include: modern-operators
+    - include: integer-literal
     - match: '>'
       scope: punctuation.definition.generic.end.swift
       pop: 1
@@ -1788,7 +1876,7 @@ contexts:
           (?:
             (?=$)
           | (?=[{{identifier_character}}\.]+>)
-          | (?=[{{identifier_character}}]+(?![.])(?:[{{generic_clause_chars}}]+)?)
+          | (?=[{{identifier_character}}]+(?![.])[{{generic_clause_chars}}]*)
           )
         )
       captures:
@@ -1801,32 +1889,32 @@ contexts:
 
   generic-parameter-clause-declaration-body:
     - meta_scope: meta.generic.swift
-    - match: ({{identifier}})\s*(?=,)
-      captures:
-        1: variable.parameter.type.swift
-    - match: ({{identifier}})
-      captures:
-        1: variable.parameter.type.swift
-    - match: ({{identifier}})\s*(:)
+    - include: modern-modifiers
+    - match: '({{identifier}})\s*(:)'
       captures:
         1: variable.parameter.type.swift
         2: punctuation.separator.annotation.conformance-or-inheritance.swift
-      set:
-        - meta_scope: meta.generic.swift
-        - match: ({{identifier}})\s*(:)
-          captures:
-            1: variable.parameter.type.swift
-            2: punctuation.separator.annotation.conformance-or-inheritance.swift
-        - match: '&'
-          scope: keyword.operator.protocol-composition-type.swift
-        - include: generic-parameter-clause-declaration-body-common
+      push:
+        - match: '(?=[,>])'
+          pop: 1
+        - include: modern-modifiers
+        - include: modern-operators
+        - include: generic-parameter-clause-call
         - include: types
         - include: identifier-support
-        - include: identifier-consumer
-        - include: whitespace-consumer
+        - match: '{{identifier}}'
+          scope: support.other.swift
+        - match: '&'
+          scope: keyword.operator.protocol-composition-type.swift
+        - include: else-pop
+    - match: '{{identifier}}'
+      scope: variable.parameter.type.swift
     - include: generic-parameter-clause-declaration-body-common
 
   generic-parameter-clause-declaration-body-common:
+    - include: modern-modifiers
+    - include: modern-operators
+    - include: integer-literal
     - match: '>'
       scope: punctuation.definition.generic.end.swift
       pop: 1
@@ -1835,10 +1923,6 @@ contexts:
       pop: 1
     - match: \.
       scope: punctuation.accessor.dot.swift
-    - match: (,)\s*?({{identifier}})(?!\s*:)
-      captures:
-        1: punctuation.separator.continuation.swift
-        2: variable.parameter.type.swift
     - match: \,
       scope: punctuation.separator.continuation.swift
     - match: (<)(?=[{{generic_clause_chars}}])
@@ -1863,6 +1947,8 @@ contexts:
         - match: ==
           scope: keyword.operator.comparison.swift
         - include: punctuations
+        - include: modern-modifiers
+        - include: modern-operators
         - include: types
         - include: identifier-support
         - include: else-pop
@@ -1906,6 +1992,8 @@ contexts:
               iOS
             | tvOS
             | watchOS
+            | visionOS
+            | visionOSApplicationExtension
             | macOS
             | iOSApplicationExtension
             | tvOSApplicationExtension
@@ -1995,7 +2083,7 @@ contexts:
       scope: keyword.operator.logical.swift
 
   compiler-compilation-condition:
-    - match: \b(os|arch|swift|compiler|targetEnvironment)\b
+    - match: \b(os|arch|swift|compiler|targetEnvironment|hasFeature|hasAttribute)\b
       scope: support.function.preprocessor.platform-condition.swift
       push:
         - match: \)
@@ -2031,6 +2119,7 @@ contexts:
         | macOS
         | tvOS
         | watchOS
+        | visionOS
         | iOS
         | Linux
         | FreeBSD
@@ -2056,10 +2145,13 @@ contexts:
         | powerpc64le
         | s390x
         | wasm32
+        | wasm64
+        | arm64e
+        | riscv64
         )\b)
       scope: constant.language.preprocessor.architecture.swift
     # swift-version
-    - match: (>=|<)([0-9])([.])?([0-9])?([.])?([0-9])?
+    - match: (>=|<=|==|>|<)([0-9]+)([.])?([0-9]+)?([.])?([0-9]+)?
       captures:
         1: keyword.operator.comparison.swift
         2: constant.numeric.value.swift
@@ -2078,7 +2170,7 @@ contexts:
           (
             # literal-expression
             file | fileID | filePath
-          | line | column | function | dsohandle
+          | line | column | function | dsohandle | isolation
           )\b
         )
       captures:
@@ -2150,7 +2242,7 @@ contexts:
 
   identifier-support:
     # Swift Standard Library Types
-    - include: Swift - Standard Library.sublime-syntax
+    - include: scope:source.swift.standard-library
     # 'NSO'bject (rough capture, as one should not bother using NS prefix)
     - match: \b(NS[A-Z][{{identifier_character}}]+)\b(?!`)
       scope: support.class.cocoa.swift
@@ -2172,3 +2264,122 @@ contexts:
     # Generic scope for a 'T'ype name or '_'Private type
     - match: \b((?:[A-Z]|_+[A-Z])[{{identifier_character}}]+)\b(?!`)
       scope: support.other.swift
+
+  ### [ Modern Swift (5.7–6.4) ] #########################################################
+
+  modern-modifiers:
+    - match: '\bdistributed\b(?=\s+(?:actor|func)\b)'
+      scope: storage.modifier.distributed.swift
+    # Do not reserve contextual words when used as names, labels, or member calls.
+    - match: '(?<![.`])\b(borrowing|consuming)\b(?=\s+(?:@|~|[A-Za-z_]))(?!\s*(?:[:=(]|\b(?:in|as|is)\b))'
+      scope: storage.modifier.ownership.swift
+    - match: '(?<![.`])\bsending\b(?=\s+(?:@|~|[A-Za-z_(\[]))(?!\s*[:=])'
+      scope: storage.modifier.sending.swift
+    - match: '(?<![.`])\beach\b(?=\s+{{identifier}})'
+      scope: storage.modifier.pack.swift
+
+  modern-operators:
+    - match: '(?<![.`])\bunsafe\b(?=\s+(?:{{identifier}}|[({]))(?!\s*[:=])'
+      scope: keyword.operator.unsafe.swift
+    - match: '(?<![.`])\b(?:consume|copy|discard)\b(?=\s+{{identifier}})(?!\s*[:=])'
+      scope: keyword.operator.ownership.swift
+    - match: '\brepeat\b(?=\s+(?:each\b|\())'
+      scope: keyword.operator.pack-expansion.swift
+    - match: '~(?=\s*(?:Copyable|Escapable)\b)'
+      scope: keyword.operator.suppressed-conformance.swift
+
+  declaration-macro:
+    - match: '\bmacro\b(?=\s+{{identifier}})'
+      scope: keyword.declaration.macro.swift
+      push:
+        - - meta_scope: meta.function.macro.swift
+          - match: '(?==|$)'
+            pop: 1
+          - include: declaration-trailing-signature
+        - parameter-list-pop
+        - generic-parameter-clause-declaration-pop
+        - declaration-func-name
+
+  macro-expansion:
+    - match: '(#)(?:({{identifier}})(\.))?({{identifier}})'
+      captures:
+        1: punctuation.definition.annotation.swift
+        2: support.module.swift
+        3: punctuation.accessor.dot.swift
+        4: entity.name.function.macro.swift
+
+  attribute-arguments:
+    - match: '\('
+      scope: punctuation.section.parens.begin.swift
+      set: attribute-arguments-body
+    - include: else-pop
+
+  attribute-arguments-body:
+    - meta_scope: meta.annotation.parameters.swift
+    - match: '\)'
+      scope: punctuation.section.parens.end.swift
+      pop: 1
+    - match: '\('
+      scope: punctuation.section.parens.begin.swift
+      push: attribute-arguments-body
+    - include: extended-string-literal
+    - include: string-literal
+    - include: integer-literal
+    - match: '\b(?:always|never|unsafe|nonsending|any|caller|concurrent|escaping|expression|declaration|accessor|member|memberAttribute|peer|conformance|extension|arbitrary|overloaded|named|prefixed|suffixed|implementation|error|warning|ignored)\b'
+      scope: constant.language.attribute-option.swift
+    - match: '({{identifier}})\s*(:)'
+      captures:
+        1: variable.parameter.swift
+        2: punctuation.separator.annotation.swift
+    - include: punctuations
+    - include: identifier-consumer
+
+  regex-literal:
+    # Extended delimiters permit whitespace, slashes, and multiline patterns.
+    - match: '(#+)(/)'
+      scope: string.regexp.swift
+      captures:
+        1: punctuation.definition.annotation.begin.swift
+        2: punctuation.definition.string.begin.swift
+      embed: regex-content
+      embed_scope: string.regexp.swift
+      escape: '(/)(\1)(?!#)'
+      escape_captures:
+        0: string.regexp.swift
+        1: punctuation.definition.string.end.swift
+        2: punctuation.definition.annotation.end.swift
+    # Only enter a bare regex where an expression may begin. Ordinary division
+    # and /= are operators; // and /* remain comments through the prototype.
+    - match: '(?x)(?:(?<=[=(:,\[])|(?<=\breturn)|(?<=\bcase)|^)\s*(/)(?=[^\s/*=])(?=[^\n]*/)'
+      captures:
+        1: punctuation.definition.string.begin.swift
+      push:
+        - meta_include_prototype: false
+        - meta_scope: string.regexp.swift
+        - match: '/'
+          scope: punctuation.definition.string.end.swift
+          pop: 1
+        - match: '$'
+          pop: 1
+        - include: regex-content
+
+  regex-content:
+    - meta_include_prototype: false
+    - match: '\\.'
+      scope: constant.character.escape.regexp.swift
+    - match: '\['
+      scope: punctuation.definition.character-class.begin.swift
+      push:
+        - meta_include_prototype: false
+        - meta_scope: constant.other.character-class.regexp.swift
+        - match: '\]'
+          scope: punctuation.definition.character-class.end.swift
+          pop: 1
+        - match: '\\.'
+          scope: constant.character.escape.regexp.swift
+    - match: '[*+?]|\{[0-9]+(?:,[0-9]*)?\}'
+      scope: keyword.operator.quantifier.regexp.swift
+    - match: '[|^$]'
+      scope: keyword.operator.regexp.swift
+    - match: '[()]'
+      scope: punctuation.section.group.regexp.swift
