@@ -1,0 +1,20 @@
+{
+  "schema_version": "4.0.0",
+  "packages": [
+    {
+      "name": "Swift Next (RaffeYang)",
+      "description": "Swift syntax highlighting through Swift 6.4, maintained in RaffeYang's fork.",
+      "homepage": "https://github.com/RaffeYang/Swift-Next",
+      "author": "RaffeYang",
+      "releases": [
+        {
+          "version": "6.4.0",
+          "date": "2026-10-20 12:40:27",
+          "sublime_text": ">=4107",
+          "platforms": ["*"],
+          "url": "https://codeload.github.com/RaffeYang/Swift-Next/zip/482d90675ba7f0593f95a5073e4cb9e3ee702c62"
+        }
+      ]
+    }
+  ]
+}
