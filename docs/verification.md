@@ -27,7 +27,7 @@ The new fixtures cover declarations, macros, contextual identifiers, packs, type
 
 ## Boundaries
 
-Native scope assertions establish parser behavior, not visual theme appearance, Swift semantic analysis, or execution of every SwiftPM command. Fixtures contain independent examples and deliberately invalid legacy strings; they are not one compilable Swift module. The new stable/development GitHub Actions workflow is configured but has not been run remotely. This checkout has not been published or permanently installed into the editor.
+Native scope assertions establish parser behavior, not visual theme appearance, Swift semantic analysis, or execution of every SwiftPM command. Fixtures contain independent examples and deliberately invalid legacy strings; they are not one compilable Swift module. The stable/development GitHub Actions workflow also passed remotely on builds 4215 and 4214 respectively: [CI run](https://github.com/RaffeYang/Swift-Next/actions/runs/39423951182). This checkout has not been published or permanently installed into the editor.
 
 ## References
 
