@@ -330,6 +330,7 @@ contexts:
       scope: punctuation.accessor.dot.swift
     - match: ','
       scope: punctuation.separator.continuation.swift
+      push: bare-regex-start
     - match: ->
       scope: punctuation.separator.annotation.return-arrow.swift
     - match: ';'
@@ -819,27 +820,8 @@ contexts:
                 1: keyword.control.conditional.case.swift
                 2: keyword.control.conditional.default.swift
               push:
-                - match: '\b=\b'
-                  scope: keyword.operator.assignment.swift
-                  pop: 1
-                - match: ':'
-                  scope: punctuation.separator.swift
-                  pop: 1
-                - match: \b(?:(var)|(let))\b
-                  captures:
-                    1: keyword.declaration.var.swift
-                    2: keyword.declaration.let.swift
-                - match: (\.)({{identifier}})(?:\s*[:,])
-                  captures:
-                    1: punctuation.accessor.dot.swift
-                    2: constant.other.swift
-                - match: \bwhere\b
-                  scope: keyword.control.conditional.where.swift
-                - include: parameter-list
-                - include: punctuations
-                - include: statements-scope-block
-                - include: statements-scope-any
-                - include: else-pop
+                - switch-case-pattern
+                - bare-regex-start
             - include: statements-scope-block
             - include: statements-scope-any
             - include: identifier-consumer
@@ -1016,14 +998,38 @@ contexts:
     - match: \bweak\b
       scope: storage.modifier.weak.swift
 
+  switch-case-pattern:
+    - match: '\b=\b'
+      scope: keyword.operator.assignment.swift
+      pop: 1
+    - match: ':'
+      scope: punctuation.separator.swift
+      pop: 1
+    - match: \b(?:(var)|(let))\b
+      captures:
+        1: keyword.declaration.var.swift
+        2: keyword.declaration.let.swift
+    - match: (\.)({{identifier}})(?:\s*[:,])
+      captures:
+        1: punctuation.accessor.dot.swift
+        2: constant.other.swift
+    - match: \bwhere\b
+      scope: keyword.control.conditional.where.swift
+    - include: parameter-list
+    - include: punctuations
+    - include: statements-scope-block
+    - include: statements-scope-any
+    - include: else-pop
+
   modifier-types:
+    - include: contextual-keyword-identifiers
     # opaque-type
-    - match: '(?<![.`])\b(some)\b(?=\s+{{identifier}})'
+    - match: '\b(some)\b(?=\s+{{identifier}})'
       captures:
         1: storage.modifier.opaque.swift
 
     # existential-type
-    - match: '(?<![.`])\b(any)\b(?=\s+{{identifier}})'
+    - match: '\b(any)\b(?=\s+{{identifier}})'
       captures:
         1: storage.modifier.existential.swift
 
@@ -1058,16 +1064,20 @@ contexts:
     - match: \(
       scope: punctuation.section.parens.begin.swift
       push:
-        - meta_scope: meta.function.parameters.swift
-        - match: \)
-          scope: punctuation.section.parens.end.swift
-          pop: 1
-        - include: parameter-list-body
-        # - match: \s
-        # - match: \w
-        # - match: '[^)]'
-        #   scope: invalid.illegal.missing-closing-paren.swift
-        #   pop: 1
+        - parameter-list-content
+        - bare-regex-start
+
+  parameter-list-content:
+    - meta_scope: meta.function.parameters.swift
+    - match: \)
+      scope: punctuation.section.parens.end.swift
+      pop: 1
+    - include: parameter-list-body
+    # - match: \s
+    # - match: \w
+    # - match: '[^)]'
+    #   scope: invalid.illegal.missing-closing-paren.swift
+    #   pop: 1
 
   parameter-list-pop:
     - include: parameter-list
@@ -1098,9 +1108,11 @@ contexts:
         8: punctuation.separator.annotation.type-annotation.swift
         9: variable.parameter.external-parameter-name.swift variable.language.wildcard.swift
         10: punctuation.separator.annotation.type-annotation.swift
+      push: bare-regex-start
     # fallback
     - match: ':'
       scope: punctuation.separator.annotation.type-annotation.swift
+      push: bare-regex-start
     # variadic parameter
     - match: (\.{3})(?=\s*[\r\n,)])
       captures:
@@ -1186,20 +1198,25 @@ contexts:
     - match: \[
       scope: punctuation.section.brackets.begin.swift
       push:
-        - meta_scope: meta.brackets.swift
-        - match: \]
-          scope: punctuation.section.brackets.end.swift
-          pop: 1
-        - match: (\[)([a-z][{{identifier_character}}]+?)(:) # value[keyPath: ...]
-          captures:
-            1: punctuation.section.brackets.begin.swift
-            2: variable.parameter.swift
-            3: punctuation.separator.key-value.swift
-        - match: ':'
-          scope: punctuation.separator.key-value.swift
-        - include: modifier-reference-counting # for capture-list
-        - include: statements-scope-any
-        - include: file-scope-word-pop
+        - square-brackets-content
+        - bare-regex-start
+
+  square-brackets-content:
+    - meta_scope: meta.brackets.swift
+    - match: \]
+      scope: punctuation.section.brackets.end.swift
+      pop: 1
+    - match: (\[)([a-z][{{identifier_character}}]+?)(:) # value[keyPath: ...]
+      captures:
+        1: punctuation.section.brackets.begin.swift
+        2: variable.parameter.swift
+        3: punctuation.separator.key-value.swift
+    - match: ':'
+      scope: punctuation.separator.key-value.swift
+      push: bare-regex-start
+    - include: modifier-reference-counting # for capture-list
+    - include: statements-scope-any
+    - include: file-scope-word-pop
 
   square-brackets-pop:
     - include: square-brackets
@@ -2267,21 +2284,32 @@ contexts:
 
   ### [ Modern Swift (5.7–6.4) ] #########################################################
 
+  # Consume contextual member names and escaped identifiers before keyword rules.
+  # Matching the dot/backticks directly avoids unsupported lookbehind assertions.
+  contextual-keyword-identifiers:
+    - match: '(\.)(some|any|borrowing|consuming|sending|each|unsafe|consume|copy|discard)\b(?=\s)'
+      captures:
+        1: punctuation.accessor.dot.swift
+        2: variable.other.member.swift
+    - match: '`(?:some|any|borrowing|consuming|sending|each|unsafe|consume|copy|discard)`'
+
   modern-modifiers:
+    - include: contextual-keyword-identifiers
     - match: '\bdistributed\b(?=\s+(?:actor|func)\b)'
       scope: storage.modifier.distributed.swift
     # Do not reserve contextual words when used as names, labels, or member calls.
-    - match: '(?<![.`])\b(borrowing|consuming)\b(?=\s+(?:@|~|[A-Za-z_]))(?!\s*(?:[:=(]|\b(?:in|as|is)\b))'
+    - match: '\b(borrowing|consuming)\b(?=\s+(?:@|~|[A-Za-z_]))(?!\s*(?:[:=(]|\b(?:in|as|is)\b))'
       scope: storage.modifier.ownership.swift
-    - match: '(?<![.`])\bsending\b(?=\s+(?:@|~|[A-Za-z_(\[]))(?!\s*[:=])'
+    - match: '\bsending\b(?=\s+(?:@|~|[A-Za-z_(\[]))(?!\s*[:=])'
       scope: storage.modifier.sending.swift
-    - match: '(?<![.`])\beach\b(?=\s+{{identifier}})'
+    - match: '\beach\b(?=\s+{{identifier}})'
       scope: storage.modifier.pack.swift
 
   modern-operators:
-    - match: '(?<![.`])\bunsafe\b(?=\s+(?:{{identifier}}|[({]))(?!\s*[:=])'
+    - include: contextual-keyword-identifiers
+    - match: '\bunsafe\b(?=\s+(?:{{identifier}}|[({]))(?!\s*[:=])'
       scope: keyword.operator.unsafe.swift
-    - match: '(?<![.`])\b(?:consume|copy|discard)\b(?=\s+{{identifier}})(?!\s*[:=])'
+    - match: '\b(?:consume|copy|discard)\b(?=\s+{{identifier}})(?!\s*[:=])'
       scope: keyword.operator.ownership.swift
     - match: '\brepeat\b(?=\s+(?:each\b|\())'
       scope: keyword.operator.pack-expansion.swift
@@ -2348,20 +2376,38 @@ contexts:
         0: string.regexp.swift
         1: punctuation.definition.string.end.swift
         2: punctuation.definition.annotation.end.swift
-    # Only enter a bare regex where an expression may begin. Ordinary division
-    # and /= are operators; // and /* remain comments through the prototype.
-    - match: '(?x)(?:(?<=[=(:,\[])|(?<=\breturn)|(?<=\bcase)|^)\s*(/)(?=[^\s/*=])(?=[^\n]*/)'
+    # Consume expression prefixes instead of inspecting already-consumed text.
+    # Parentheses, brackets, and argument labels enter bare-regex-start directly
+    # so their existing grouping contexts remain on the stack.
+    - match: '(?x)(?:(=)|(:)|(,)|\b(return)\b|\b(case)\b|^)\s*(/)(?=[^\s/*=])(?=[^\n]*/)'
+      captures:
+        1: keyword.operator.assignment.swift
+        2: punctuation.separator.key-value.swift
+        3: punctuation.separator.continuation.swift
+        4: keyword.control.flow.return.swift
+        5: keyword.control.conditional.case.swift
+        6: punctuation.definition.string.begin.swift
+      push: bare-regex-body
+
+  # One-shot expression entry: preserve whitespace, then either enter a regex or
+  # return to the enclosing context without consuming the next expression.
+  bare-regex-start:
+    - match: '(/)(?=[^\s/*=])(?=[^\n]*/)'
       captures:
         1: punctuation.definition.string.begin.swift
-      push:
-        - meta_include_prototype: false
-        - meta_scope: string.regexp.swift
-        - match: '/'
-          scope: punctuation.definition.string.end.swift
-          pop: 1
-        - match: '$'
-          pop: 1
-        - include: regex-content
+      set: bare-regex-body
+    - match: '(?=\S|$)'
+      pop: 1
+
+  bare-regex-body:
+    - meta_include_prototype: false
+    - meta_scope: string.regexp.swift
+    - match: '/'
+      scope: punctuation.definition.string.end.swift
+      pop: 1
+    - match: '$'
+      pop: 1
+    - include: regex-content
 
   regex-content:
     - meta_include_prototype: false

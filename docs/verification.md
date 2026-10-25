@@ -1,5 +1,27 @@
 # Verification
 
+## Review follow-up — 2026-10-25
+
+Verified the review fix with `/Applications/Text.app` (Sublime Text build 4214),
+using a temporary package snapshot matching the working grammar and fixtures.
+All 198 native assertions passed: modern Swift 177, strings 20, accessors 1;
+the legacy grammar corpus also parsed without errors.
+
+The native `incompatible_syntax_patterns` check reported no incompatible
+patterns in `Swift.sublime-syntax`. Both positive and negative lookbehinds
+have been removed. Contextual members and escaped identifiers are consumed
+before contextual keyword rules; bare regex entry uses expression prefixes
+and one-shot contexts while preserving parentheses, brackets, and case scopes.
+Regression fixtures cover contextual identifiers, regex arguments, tuples,
+arrays, dictionaries, case patterns, division, and parsing after regex literals.
+
+The static validator now rejects either kind of lookbehind so the existing
+CI validation step prevents their reintroduction. Local static validation and
+`git diff --check` also passed. Remote CI results below describe the earlier
+commit, not this follow-up.
+
+## Original verification — 2026-10-20
+
 Verified on 2026-10-20 with the installed Sublime Text runtime, build 4214.
 
 ## Native syntax assertions

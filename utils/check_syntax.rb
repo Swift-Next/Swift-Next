@@ -31,6 +31,9 @@ Dir.glob('**/*.sublime-syntax').each do |path|
     when Hash
       if value.key?('match')
         pattern = expand.call(value.fetch('match'))
+        if pattern.include?('(?<!') || pattern.include?('(?<=')
+          errors << "#{path}: lookbehind requires the legacy regex engine: #{value.fetch('match')}"
+        end
         # Sublime treats numeric backreferences in popping rules as captures
         # from the opener. Substitute a sample hash delimiter for compilation.
         pattern = pattern.gsub(/\\[1-9]/, '#') if value['pop']
