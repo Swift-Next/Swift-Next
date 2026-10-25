@@ -352,3 +352,111 @@
         """#
     let afterNestedMultiline = 1
 //      ^^^^^^^^^^^^^^^^^^^^ variable.other.constant.swift
+
+    object.some value
+//         ^^^^ - storage.modifier keyword.operator
+
+    `some` value
+//   ^^^^ - storage.modifier keyword.operator
+
+    object.any value
+//         ^^^ - storage.modifier keyword.operator
+
+    `any` value
+//   ^^^ - storage.modifier keyword.operator
+
+    object.borrowing value
+//         ^^^^^^^^^ - storage.modifier keyword.operator
+
+    `borrowing` value
+//   ^^^^^^^^^ - storage.modifier keyword.operator
+
+    object.consuming value
+//         ^^^^^^^^^ - storage.modifier keyword.operator
+
+    `consuming` value
+//   ^^^^^^^^^ - storage.modifier keyword.operator
+
+    object.sending value
+//         ^^^^^^^ - storage.modifier keyword.operator
+
+    `sending` value
+//   ^^^^^^^ - storage.modifier keyword.operator
+
+    object.each value
+//         ^^^^ - storage.modifier keyword.operator
+
+    `each` value
+//   ^^^^ - storage.modifier keyword.operator
+
+    object.unsafe value
+//         ^^^^^^ - storage.modifier keyword.operator
+
+    `unsafe` value
+//   ^^^^^^ - storage.modifier keyword.operator
+
+    object.consume value
+//         ^^^^^^^ - storage.modifier keyword.operator
+
+    `consume` value
+//   ^^^^^^^ - storage.modifier keyword.operator
+
+    object.copy value
+//         ^^^^ - storage.modifier keyword.operator
+
+    `copy` value
+//   ^^^^ - storage.modifier keyword.operator
+
+    object.discard value
+//         ^^^^^^^ - storage.modifier keyword.operator
+
+    `discard` value
+//   ^^^^^^^ - storage.modifier keyword.operator
+
+    let grouped = (/abc/)
+//                  ^^^ string.regexp.swift
+
+    let values = [/abc/, /def/]
+//                 ^^^ string.regexp.swift
+
+    let values = [/abc/, /def/]
+//                        ^^^ string.regexp.swift
+
+    let grouped = (left / right / count)
+//                        ^^^^^ - string.regexp
+
+    let values = [left / right / count]
+//                       ^^^^^ - string.regexp
+
+    call(of: /abc/, next: /def/)
+//                         ^^^ string.regexp.swift
+
+    let grouped = (/abc/); let afterGrouped = 1
+//                             ^^^^^^^^^^^^ variable.other.constant.swift
+
+    let values = [/abc/]; let afterArray = 1
+//                            ^^^^^^^^^^ variable.other.constant.swift
+
+    let patterns = ["a": /abc/, "b": /def/]
+//                        ^^^ string.regexp.swift
+
+    let patterns = ["a": /abc/, "b": /def/]
+//                                    ^^^ string.regexp.swift
+
+    call(of: left / right / count)
+//                  ^^^^^ - string.regexp
+
+    let values = (/abc/, /def/)
+//                        ^^^ string.regexp.swift
+
+    switch text { case /abc/: break; default: break }
+//                      ^^^ string.regexp.swift
+
+    if case /abc/ = text {}
+//           ^^^ string.regexp.swift
+
+    let pattern = /abc/; let ratio = left/right/count
+//                                        ^^^^^ - string.regexp
+
+    let pattern = (/abc/).wholeMatch(in: text)
+//                        ^^^^^^^^^^ variable.function.swift

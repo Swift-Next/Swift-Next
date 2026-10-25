@@ -7,7 +7,7 @@ The `syntax_test_*.swift` files use Sublime Text's native syntax assertion forma
 - `syntax_test_strings.swift`: existing string scope assertions.
 - `syntax_test_grammar.swift`: legacy grammar corpus used as a parser smoke test; it has no scope assertions.
 
-Run `ruby utils/check_syntax.rb` first. It expands variables and checks both match and embed escape patterns without launching the editor.
+Run `ruby utils/check_syntax.rb` first. It expands variables and checks both match and embed escape patterns without launching the editor. It also rejects lookbehind assertions, which require the legacy regex engine.
 
 ## Run in Sublime Text 4
 
