@@ -93,6 +93,15 @@ variables:
 
   access_levels: '\b(?:(private)|(fileprivate)|(internal)|(public)|(open))\b'
 
+  # Attributes whose argument clause may consume the following parens. Other
+  # attributes such as @Sendable or global actors may precede a function type.
+  attribute_with_arguments: |-
+    (?x:
+        attached | freestanding | isolated | lifetime | c | specialize
+      | export | diagnose | execution | storageRestrictions | abi
+      | convention | derivative | differentiable | objc
+    )
+
   generic_clause_chars: '{{identifier_character}}{{whitespaces}}<:&~\.,\s`>'
   generic_clause_chars_call_site: '{{generic_clause_chars}}\?\!\(\)\[\]-'
 
@@ -644,12 +653,11 @@ contexts:
       push:
         - match: \?
           scope: keyword.operator.ternary-conditional.swift
-        # Consume ':' with statements first - then remained : is ternary.
-        # [ TODO: Not checked comprehensively yet, there might be ':' without any scope. ] #
-        - include: statements-scope-any
+          push: bare-regex-start
         - match: ':'
           scope: keyword.operator.ternary-conditional.swift
-          pop: 1
+          set: bare-regex-start
+        - include: statements-scope-any
         - include: reserved-word-pop
 
     # Optional
@@ -1079,6 +1087,22 @@ contexts:
     #   scope: invalid.illegal.missing-closing-paren.swift
     #   pop: 1
 
+  # Declarations allow ownership modifiers before tuple and array types, which
+  # calls such as `consuming (value)` must keep treating as function names.
+  declaration-parameter-list:
+    - match: '\('
+      scope: punctuation.section.parens.begin.swift
+      push:
+        - meta_scope: meta.function.parameters.swift
+        - match: '\b(?:borrowing|consuming)\b(?=\s+[\[(])'
+          scope: storage.modifier.ownership.swift
+        - include: declaration-parameter-list
+        - include: parameter-list-content
+
+  declaration-parameter-list-pop:
+    - include: declaration-parameter-list
+    - include: immediately-pop
+
   parameter-list-pop:
     - include: parameter-list
     - include: immediately-pop
@@ -1164,24 +1188,29 @@ contexts:
         1: punctuation.separator.trailing-closure.swift
         2: punctuation.section.block.begin.swift
       push:
-        - meta_scope: meta.block.swift
-        - match: \}
-          scope: punctuation.section.block.end.swift
-          pop: 1
-        # implicit-parameter-name
-        - match: \$([0-9]+)\b
-          captures:
-            0: variable.parameter.implicit-parameter-name.swift
-            1: meta.number.integer.decimal.swift constant.numeric.value.swift
-        # closure-signature in
-        - match: \bin\b
-          scope: keyword.other.closure-signature-in.swift
-        - include: access-level-pop
-        - include: statements-scope-block
-        - include: statements-scope-any
-        - include: file-scope-word-pop
-        - include: identifier-consumer
-        - include: else-pop
+        - inner-code-block-content
+        - bare-regex-start
+
+  inner-code-block-content:
+    - meta_scope: meta.block.swift
+    - match: \}
+      scope: punctuation.section.block.end.swift
+      pop: 1
+    # implicit-parameter-name
+    - match: \$([0-9]+)\b
+      captures:
+        0: variable.parameter.implicit-parameter-name.swift
+        1: meta.number.integer.decimal.swift constant.numeric.value.swift
+    # closure-signature in
+    - match: \bin\b
+      scope: keyword.other.closure-signature-in.swift
+      push: bare-regex-start
+    - include: access-level-pop
+    - include: statements-scope-block
+    - include: statements-scope-any
+    - include: file-scope-word-pop
+    - include: identifier-consumer
+    - include: else-pop
 
   inner-code-block-pop:
     - include: inner-code-block
@@ -1368,7 +1397,7 @@ contexts:
         - declaration-trailing-signature
         - - meta_content_scope: meta.entity.name.function.swift
           - include: immediately-pop
-        - parameter-list-pop
+        - declaration-parameter-list-pop
         - generic-parameter-clause-declaration-pop
         - declaration-func-name
 
@@ -1545,7 +1574,7 @@ contexts:
           - include: else-pop
         - - meta_scope: meta.entity.name.init.swift
           - include: immediately-pop
-        - parameter-list-pop
+        - declaration-parameter-list-pop
         - generic-parameter-clause-declaration-pop
 
     - match: (?:^|\s)\b(deinit)\b\s*
@@ -1642,7 +1671,7 @@ contexts:
         - declaration-trailing-signature
         - - meta_scope: meta.entity.name.subscript.swift
           - include: immediately-pop
-        - parameter-list-pop
+        - declaration-parameter-list-pop
         - generic-parameter-clause-declaration-pop
 
   declaration-precedencegroup:
@@ -1688,15 +1717,19 @@ contexts:
   ### [ Attributes ] ####################################################################
 
   attribute-builtins:
+    - match: (@)\b({{attribute_with_arguments}})\b(?=\s*\()
+      captures:
+        1: meta.annotation.swift punctuation.definition.annotation.swift
+        2: meta.annotation.identifier.swift support.function.annotation.swift
+      push: attribute-arguments
     - match: |-
         (?x:
           (@)\b(
-              MainActor
-            | attached | freestanding | retroactive
-            | concurrent | isolated | escapable | lifetime
-            | c | implementation | specialize | export | diagnose
+              {{attribute_with_arguments}}
+            | MainActor | retroactive
+            | concurrent | escapable
+            | implementation
             | safe | unsafe | const | eagerMove
-            | execution | storageRestrictions | abi
             | unknown
 
             | GKInspectable
@@ -1714,9 +1747,6 @@ contexts:
 
             | autoclosure
             | available
-            | convention
-            | derivative
-            | differentiable
             | discardableResult
             | dynamicCallable
             | dynamicMemberLookup
@@ -1728,7 +1758,6 @@ contexts:
             | noDerivative
             | noescape
             | nonobjc
-            | objc
             | objcMembers
             | optional
             | preconcurrency
@@ -1748,7 +1777,6 @@ contexts:
       captures:
         1: meta.annotation.swift punctuation.definition.annotation.swift
         2: meta.annotation.identifier.swift support.function.annotation.swift
-      push: attribute-arguments
 
     - match: (@)\s*\b(inline)\b\s*(\()
       captures:
@@ -2300,9 +2328,9 @@ contexts:
     # Do not reserve contextual words when used as names, labels, or member calls.
     - match: '\b(borrowing|consuming)\b(?=\s+(?:@|~|[A-Za-z_]))(?!\s*(?:[:=(]|\b(?:in|as|is)\b))'
       scope: storage.modifier.ownership.swift
-    - match: '\bsending\b(?=\s+(?:@|~|[A-Za-z_(\[]))(?!\s*[:=])'
+    - match: '\bsending\b(?=\s+(?:@|~|[A-Za-z_(\[]))(?!\s*(?:[:=]|\b(?:in|as|is)\b))'
       scope: storage.modifier.sending.swift
-    - match: '\beach\b(?=\s+{{identifier}})'
+    - match: '\beach\b(?=\s+{{identifier}})(?!\s+\b(?:in|as|is)\b)'
       scope: storage.modifier.pack.swift
 
   modern-operators:
@@ -2324,7 +2352,7 @@ contexts:
           - match: '(?==|$)'
             pop: 1
           - include: declaration-trailing-signature
-        - parameter-list-pop
+        - declaration-parameter-list-pop
         - generic-parameter-clause-declaration-pop
         - declaration-func-name
 

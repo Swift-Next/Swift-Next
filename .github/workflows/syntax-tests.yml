@@ -20,7 +20,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Static syntax validation
-        run: ruby utils/check_syntax.rb
+        run: |
+          ruby utils/test_check_syntax.rb
+          ruby utils/check_syntax.rb
       - uses: SublimeText/syntax-test-action@v2.5.1
         with:
           build: ${{ matrix.build }}

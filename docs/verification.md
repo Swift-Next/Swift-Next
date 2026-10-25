@@ -1,5 +1,26 @@
 # Verification
 
+## Regression fixes — 2026-10-25
+
+Verified in Sublime Text build 4214 using a temporary package snapshot. All
+243 native assertions passed: modern Swift 177, review regressions 45,
+strings 20, and accessors 1. The legacy corpus parsed without test errors.
+The original eight review assertions failed before these fixes and pass now.
+
+The new fixture checks function-type parameters after `@Sendable`, `@escaping`,
+`@MainActor`, and `@autoclosure`; attributes that do take arguments; regex
+literals in both ternary branches and implicit-return closures; contextual
+`each`/`sending` bindings; and ownership modifiers before tuple and array
+parameter types. It also checks ordinary calls using ownership words, default
+arguments, nested function types, initializer/subscript/macro parameters,
+division, and scope recovery after these constructs.
+
+Native `incompatible_syntax_patterns` results were empty for both syntax files.
+The static validator additionally rejects lookbehind in embedded escape
+patterns, with six isolated regression cases run in CI. Static validation and
+`git diff --check` passed. These checks establish highlighting and engine
+compatibility, not complete Swift language semantics or theme appearance.
+
 ## Review follow-up — 2026-10-25
 
 Verified the review fix with `/Applications/Text.app` (Sublime Text build 4214),
