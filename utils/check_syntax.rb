@@ -47,6 +47,9 @@ Dir.glob('**/*.sublime-syntax').each do |path|
       end
       if value.key?('escape')
         pattern = expand.call(value.fetch('escape')).gsub(/\\[1-9]/, '#')
+        if pattern.include?('(?<!') || pattern.include?('(?<=')
+          errors << "#{path}: embed escape requires the legacy regex engine: #{value.fetch('escape')}"
+        end
         begin
           Regexp.new(pattern)
         rescue RegexpError => error
